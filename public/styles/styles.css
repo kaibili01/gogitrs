@@ -21,18 +21,24 @@ body {
   font-family: orangejuice;
   color: rgb(243, 130, 1);
   font-size: 85px;
+  margin-top: 3vh;
+}
+
+.homePageRow {
+  margin-top: 25vh;
 }
 
 .subHeader {
   font-family: fingerpaint;
   color: rgb(243, 174, 1);
-  
+  margin-top: -1vh;
 }
 
 .homePage {
   border: 3px double rgb(243, 174, 1);
   background-color: rgba(243, 130, 1, .1);
   font-family: fingerpaint;
+  min-width: 110px;
   padding: 15px;
 }
 
