@@ -1,0 +1,52 @@
+.list-group-item {
+    line-height: 2.5;
+  }
+  
+  @font-face {
+    font-family: orangejuice;
+    src: url("../font/orange\ juice\ 2.0.ttf")
+  }
+  
+  @font-face {
+    font-family: fingerpaint;
+    src: url("../font/FingerPaint-Regular.ttf")
+  }
+  
+  body {
+    background-color: rgb(253, 243, 224);
+    min-height: 100%;
+  }
+  
+  .headerText {
+    font-family: orangejuice;
+    color: rgb(243, 130, 1);
+    font-size: 85px;
+    margin-top: 3vh;
+  }
+  
+  .newUserInput {
+    margin-top: 3vh;
+  }
+  
+  .subHeader {
+    font-family: fingerpaint;
+    color: rgb(243, 174, 1);
+    margin-top: 1vh;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .container {
+    border: 6px double rgb(88, 34, 34);
+    min-height: 100vh;
+  }
+
+  #registerButton {
+      color: black !important;
+  }
