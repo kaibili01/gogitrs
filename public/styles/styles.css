@@ -28,6 +28,14 @@ body {
   margin-top: 25vh;
 }
 
+.register {
+  color: black !important;
+}
+
+.logIn {
+  color: black !important;
+}
+
 .subHeader {
   font-family: fingerpaint;
   color: rgb(243, 174, 1);
