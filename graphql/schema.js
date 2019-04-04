@@ -137,7 +137,7 @@ const Query = new GraphQLObjectType({
           }
         },
         resolve (root, args) {
-          return db.models.user.findAll({where: args});
+          return db.sequelize.models.User.findAll({where: args});
         }
       }
     }
