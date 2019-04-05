@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const exphbs = require("express-handlebars");
 const graphHTTP = require("express-graphql");
-const Schema = require("./graphql/schema");
+const Schema = require("./graphql/Schema");
 const db = require("./models/db");
 
 const app = express();

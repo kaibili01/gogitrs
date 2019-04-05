@@ -64,11 +64,11 @@ db.sequelize.sync(syncOptions).then(function () {
   //     password: faker.internet.password(),
   //     email: faker.internet.email(),
   //     calendar: "{}",
-  //     permissions: `{
-  //       post: ${faker.random.boolean()},
-  //       harvest: ${faker.random.boolean()},
-  //       admin: false,
-  //     }`
+  //     permissions: JSON.stringify({
+  //       post: faker.random.boolean(),
+  //       harvest: faker.random.boolean(),
+  //       admin: false
+  //     })
   //   }).then(user => {
   //     return user.createPost({
   //       title: `Sample title by ${user.firstName} ${user.lastName}`,
