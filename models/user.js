@@ -15,9 +15,25 @@ module.exports = function (sequelize, DataTypes) {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: {
-          args: true,
-          msg: "Username already in use!"
+        validate: {
+          isUnique: function (value, next) {
+            User.find({
+              where: { username: value },
+              attributes: ["id"]
+            }).done(function (error, user) {
+              if (error) {
+                return next(error);
+              }
+              if (user) {
+                // We found a user with this email address.
+                // Pass the error to the next method.
+                return next("Email address already in use!");
+              }
+              // If we got this far, the email address hasn't been used yet.
+              // Call next with no arguments when validation is successful.
+              next();
+            });
+          }
         }
       },
       password: {
@@ -28,11 +44,30 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isEmail: true
-        },
-        unique: {
-          args: true,
-          msg: "Email address already in use!"
+          isEmail: true,
+          isUnique: function (value, next) {
+            User.find({
+              where: { email: value },
+              attributes: ["id"]
+            }).done(function (error, user) {
+              if (error) {
+                // Some unexpected error occured with the find method.
+                return next(error);
+              }
+              if (user) {
+                // We found a user with this email address.
+                // Pass the error to the next method.
+                return next("Email address already in use!");
+              }
+              // If we got this far, the email address hasn't been used yet.
+              // Call next with no arguments when validation is successful.
+              next();
+            });
+          }
+          // unique: {
+          //   args: true,
+          //   msg: "Email address already in use!"
+          // }
         }
       },
       calendar: {
