@@ -7,7 +7,9 @@ const {
   GraphQLNonNull,
 } = require("graphql");
 const db = require("../models/db");
-
+const bcrypt = require("bcrypt-nodejs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const User = new GraphQLObjectType({
   name: "User",
   description: "This represents a User",
@@ -128,6 +130,32 @@ const Post = new GraphQLObjectType({
         resolve(post) {
           return post.endTime;
         }
+      },
+      postedBy: {
+        type: User,
+        resolve(post) {
+          return post.getUser();
+        }
+      }
+    };
+  }
+});
+const AuthPayload = new GraphQLObjectType({
+  name: "AuthPayload",
+  description: "This is what results from a successful login",
+  fields: () => {
+    return {
+      token: {
+        type: GraphQLString,
+        resolve(payload) {
+          return payload.token;
+        }
+      },
+      user: {
+        type: User,
+        resolve(payload) {
+          return payload.user;
+        }
       }
     };
   }
@@ -135,7 +163,7 @@ const Post = new GraphQLObjectType({
 
 const Query = new GraphQLObjectType({
   name: "Query",
-  description: "This is a root query",
+  description: "This is just any ol' query",
   fields: () => {
     return {
       users: {
@@ -151,6 +179,12 @@ const Query = new GraphQLObjectType({
         resolve(root, args) {
           return db.sequelize.models.User.findAll({ where: args });
         }
+      },
+      posts: {
+        type: new GraphQLList(Post),
+        resolve(root, args) {
+          return db.sequelize.models.Post.findAll({ where: args });
+        }
       }
     };
   }
@@ -161,6 +195,41 @@ const Mutation = new GraphQLObjectType({
   description: "Functions to create stuff",
   fields: () => {
     return {
+      login: {
+        type: AuthPayload,
+        args: {
+          username: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          password: {
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        },
+        async resolve(parent, args, context, info) {
+          const user = await db.sequelize.models.User.findOne({
+            where: { username: args.username }
+          });
+          console.log("Username: ", user.dataValues.username);
+          if (!user) {
+            throw new Error("No such user found");
+          }
+          let valid = await bcrypt.compareSync(args.password, user.password);
+          console.log("isValid:", valid);
+          if (!valid) {
+            throw new Error("Invalid password");
+          }
+
+          const token = await jwt.sign(
+            { userId: user.id },
+            process.env.APP_SECRET
+          );
+          console.log("JSON Web Token:", token);
+          return {
+            token,
+            user
+          };
+        }
+      },
       addUser: {
         type: User,
         args: {
@@ -180,12 +249,12 @@ const Mutation = new GraphQLObjectType({
             type: new GraphQLNonNull(GraphQLString)
           }
         },
-        resolve(root, args) {
+        resolve(parent, args, context, info) {
           return db.sequelize.models.User.create({
             firstName: args.firstName,
             lastName: args.lastName,
             username: args.username,
-            password: args.password,
+            password: bcrypt.hashSync(args.password),
             email: args.email.toLowerCase(),
             calendar: "[]",
             permissions: `{
