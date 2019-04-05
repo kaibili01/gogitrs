@@ -40,7 +40,7 @@ const User = new GraphQLObjectType ({
         type: GraphQLString,
         resolve(user){
           return user.password
-        }
+        
       },
       accountType: {
         type: GraphQLString,
@@ -137,7 +137,7 @@ const Query = new GraphQLObjectType({
           }
         },
         resolve (root, args) {
-          return db.models.user.findAll({where: args});
+          return db.sequelize.models.User.findAll({where: args});
         }
       }
     }
