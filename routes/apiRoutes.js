@@ -1,6 +1,6 @@
-var db = require('../models/db');
+var db = require("../models/db");
 
-module.exports = function (app) {
+module.exports = app => {
   // Get all examples
   // app.get("/api/examples", function(req, res) {
   //   db.Example.findAll({}).then(function(dbExamples) {
@@ -8,8 +8,8 @@ module.exports = function (app) {
   //   });
   // });
   // // Create a new example
-  app.post("/graphql", function (req, res) {
-    db.Example.create(req.body).then(function (dbExample) {
+  app.post("/graphql", (req, res) => {
+    db.Example.create(req.body).then(dbExample => {
       res.json(dbExample);
     });
   });

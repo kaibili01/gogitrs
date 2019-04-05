@@ -25,7 +25,7 @@ const Mutation = new GraphQLObjectType({
             type: new GraphQLNonNull(GraphQLString)
           }
         },
-        async resolve(parent, args, context, info) {
+        async resolve(parent, args) {
           const user = await db.sequelize.models.User.findOne({
             where: { username: args.username }
           });
@@ -69,7 +69,7 @@ const Mutation = new GraphQLObjectType({
             type: new GraphQLNonNull(GraphQLString)
           }
         },
-        resolve(parent, args, context, info) {
+        resolve(parent, args) {
           return db.sequelize.models.User.create({
             firstName: args.firstName,
             lastName: args.lastName,
