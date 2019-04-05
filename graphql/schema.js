@@ -40,7 +40,7 @@ const User = new GraphQLObjectType ({
         type: GraphQLString,
         resolve(user){
           return user.password
-        }
+        
       },
       accountType: {
         type: GraphQLString,
