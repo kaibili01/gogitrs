@@ -1,125 +1,119 @@
-const { 
+const {
   GraphQLObjectType,
   GraphQLInt,
   GraphQLString,
   GraphQLList,
   GraphQLSchema,
+  GraphQLNonNull,
 } = require("graphql");
 const db = require("../models/db");
 
-const User = new GraphQLObjectType ({
+const User = new GraphQLObjectType({
   name: "User",
   description: "This represents a User",
   fields: () => {
     return {
       id: {
         type: GraphQLInt,
-        resolve(user){
+        resolve(user) {
           return user.id;
         }
       },
-      name: {
+      firstName: {
         type: GraphQLString,
-        resolve(user){
-          return user.name
+        resolve(user) {
+          return user.firstName;
         }
       },
-      description: {
+      lastName: {
         type: GraphQLString,
-        resolve(user){
-          return user.description
+        resolve(user) {
+          return user.lastName;
         }
       },
       username: {
         type: GraphQLString,
-        resolve(user){
-          return user.username
+        resolve(user) {
+          return user.username;
         }
       },
       password: {
         type: GraphQLString,
-        resolve(user){
-          return user.password
-        
-      },
-      accountType: {
-        type: GraphQLString,
-        resolve(user){
-          return user.accountType
+        resolve(user) {
+          return user.password;
         }
       },
       email: {
         type: GraphQLString,
-        resolve(user){
-          return user.email
-        }
-      },
-      address: {
-        type: GraphQLString,
-        resolve(user){
-          return user.address
-        }
-      },
-      city: {
-        type: GraphQLString,
-        resolve(user){
-          return user.city
-        }
-      },
-      state: {
-        type: GraphQLString,
-        resolve(user){
-          return user.state
+        resolve(user) {
+          return user.email;
         }
       },
       calendar: {
         type: GraphQLString,
-        resolve(user){
-          return user.calendar
+        resolve(user) {
+          return user.calendar;
         }
       },
       permissions: {
         type: GraphQLString,
-        resolve(user){
-          return user.permissions
+        resolve(user) {
+          return user.permissions;
         }
-      },
+      }
     };
   }
 });
-
-const Post = new GraphQLObjectType ({
+const Post = new GraphQLObjectType({
   name: "Post",
   description: "This is a post",
   fields: () => {
     return {
       id: {
         type: GraphQLInt,
-        resolve(post){
+        resolve(post) {
           return post.id;
         }
       },
       title: {
         type: GraphQLString,
-        resolve(post){
-          return post.title
+        resolve(post) {
+          return post.title;
         }
       },
       description: {
         type: GraphQLString,
-        resolve(post){
-          return post.description
+        resolve(post) {
+          return post.description;
+        }
+      },
+      address: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.address;
+        }
+      },
+      city: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.city;
+        }
+      },
+      state: {
+        type: GraphQLString,
+        resolve(user) {
+          return user.state;
         }
       },
       availability: {
         type: GraphQLString,
-        resolve(post){
-          return post.availability
+        resolve(post) {
+          return post.availability;
         }
       },
-    }
+    };
   }
-})
+});
 
 const Query = new GraphQLObjectType({
   name: "Query",
@@ -136,16 +130,61 @@ const Query = new GraphQLObjectType({
             type: GraphQLString
           }
         },
-        resolve (root, args) {
-          return db.sequelize.models.User.findAll({where: args});
+        resolve(root, args) {
+          return db.sequelize.models.User.findAll({ where: args });
         }
       }
-    }
+    };
   }
-})
+});
 
-const Schema = new GraphQLSchema ({
+const Mutation = new GraphQLObjectType({
+  name: "Mutation",
+  description: "Functions to create stuff",
+  fields: () => {
+    return {
+      addUser: {
+        type: User,
+        args: {
+          firstName: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          lastName: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          username: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          email: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          password: {
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        },
+        resolve(root, args) {
+          return db.sequelize.models.User.create({
+            firstName: args.firstName,
+            lastName: args.lastName,
+            username: args.username,
+            password: args.password,
+            email: args.email.toLowerCase(),
+            calendar: "[]",
+            permissions: `{
+              post: true,
+              harvest: true,
+              admin: false,
+            }`
+          });
+        }
+      }
+    };
+  }
+});
+
+const Schema = new GraphQLSchema({
   query: Query,
+  mutation: Mutation
 });
 
 module.exports = Schema;

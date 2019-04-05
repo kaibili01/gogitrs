@@ -23,17 +23,17 @@ if (config.use_env_variable) {
 }
 
 fs.readdirSync(__dirname)
-  .filter(function(file) {
+  .filter(function (file) {
     return (
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
     );
   })
-  .forEach(function(file) {
+  .forEach(function (file) {
     var model = sequelize.import(path.join(__dirname, file));
     db[model.name] = model;
   });
 
-Object.keys(db).forEach(function(modelName) {
+Object.keys(db).forEach(function (modelName) {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
@@ -55,20 +55,15 @@ if (process.env.NODE_ENV === "test") {
 }
 
 // Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(function() {
-  // console.log(db.sequelize.models);
+db.sequelize.sync(syncOptions).then(function () {
   // _.times(10, () => {
   //   return db.User.create({
-  //     name: faker.name.findName(),
-  //     description: "I am a fake person!",
+  //     firstName: faker.name.firstName(),
+  //     lastName: faker.name.lastName(),
   //     username: faker.internet.userName(),
   //     password: faker.internet.password(),
-  //     accountType: "homeowner",
   //     email: faker.internet.email(),
-  //     address: faker.address.streetAddress(),
-  //     city: faker.address.city(),
-  //     state: faker.address.stateAbbr(),
-  //     calendar: '{}',
+  //     calendar: "{}",
   //     permissions: `{
   //       post: ${faker.random.boolean()},
   //       harvest: ${faker.random.boolean()},
@@ -78,6 +73,9 @@ db.sequelize.sync(syncOptions).then(function() {
   //     return user.createPost({
   //       title: `Sample title by ${user.name}`,
   //       description: `This is a sample post`,
+  //       address: faker.address.streetAddress(),
+  //       city: faker.address.city(),
+  //       state: faker.address.stateAbbr(),
   //       availability: `[{
   //         start: '12:00PM April 16th 2019',
   //         end: '04:00PM April 16, 2019',
