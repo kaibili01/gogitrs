@@ -56,33 +56,33 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 db.sequelize.sync(syncOptions).then(function () {
-  _.times(10, () => {
-    return db.User.create({
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      username: faker.internet.userName(),
-      password: faker.internet.password(),
-      email: faker.internet.email(),
-      calendar: "{}",
-      permissions: `{
-        post: ${faker.random.boolean()},
-        harvest: ${faker.random.boolean()},
-        admin: false,
-      }`
-    }).then(user => {
-      return user.createPost({
-        title: `Sample title by ${user.firstName} ${user.lastName}`,
-        quantity: faker.random.number(),
-        instructions: "This is a sample post",
-        address: faker.address.streetAddress(),
-        city: faker.address.city(),
-        state: faker.address.stateAbbr(),
-        date: "April 16th 2019",
-        startTime: "10:00 AM",
-        endTime: "04:00 PM"
-      });
-    });
-  });
+  // _.times(10, () => {
+  //   return db.User.create({
+  //     firstName: faker.name.firstName(),
+  //     lastName: faker.name.lastName(),
+  //     username: faker.internet.userName(),
+  //     password: faker.internet.password(),
+  //     email: faker.internet.email(),
+  //     calendar: "{}",
+  //     permissions: `{
+  //       post: ${faker.random.boolean()},
+  //       harvest: ${faker.random.boolean()},
+  //       admin: false,
+  //     }`
+  //   }).then(user => {
+  //     return user.createPost({
+  //       title: `Sample title by ${user.firstName} ${user.lastName}`,
+  //       quantity: faker.random.number(),
+  //       instructions: "This is a sample post",
+  //       address: faker.address.streetAddress(),
+  //       city: faker.address.city(),
+  //       state: faker.address.stateAbbr(),
+  //       date: "April 16th 2019",
+  //       startTime: "10:00 AM",
+  //       endTime: "04:00 PM"
+  //     });
+  //   });
+  // });
 });
 
 module.exports = db;
