@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt-nodejs");
 
-module.exports = function (sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
@@ -16,11 +16,11 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isUnique: function (value, next) {
+          isUnique: (value, next) => {
             User.find({
               where: { username: value },
               attributes: ["id"]
-            }).done(function (error, user) {
+            }).done((error, user) => {
               if (error) {
                 return next(error);
               }
@@ -45,11 +45,11 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         validate: {
           isEmail: true,
-          isUnique: function (value, next) {
+          isUnique: (value, next) => {
             User.find({
               where: { email: value },
               attributes: ["id"]
-            }).done(function (error, user) {
+            }).done((error, user) => {
               if (error) {
                 // Some unexpected error occured with the find method.
                 return next(error);
@@ -64,10 +64,6 @@ module.exports = function (sequelize, DataTypes) {
               next();
             });
           }
-          // unique: {
-          //   args: true,
-          //   msg: "Email address already in use!"
-          // }
         }
       },
       calendar: {
