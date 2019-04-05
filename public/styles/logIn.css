@@ -47,6 +47,10 @@
     min-height: 100vh;
   }
 
+  #goHomeButton  {
+    color: black !important;
+  }
+  
   #logInButton {
       color: black !important;
   }
