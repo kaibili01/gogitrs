@@ -51,6 +51,11 @@
 
   #registerButton {
       color: black !important;
-      border: 3px double rgb(243, 130, 1);
-      background-color: rgba(243, 130, 1, 0.15);
+ slbh
   }
+  
+  #goHomeButton {
+    color: black !important;
+}
+
+     
