@@ -81,36 +81,54 @@ const Post = new GraphQLObjectType({
           return post.title;
         }
       },
-      description: {
+      quantity: {
+        type: GraphQLInt,
+        resolve(post) {
+          return post.quantity;
+        }
+      },
+      instructions: {
         type: GraphQLString,
         resolve(post) {
-          return post.description;
+          return post.instructions;
         }
       },
       address: {
         type: GraphQLString,
-        resolve(user) {
-          return user.address;
+        resolve(post) {
+          return post.address;
         }
       },
       city: {
         type: GraphQLString,
-        resolve(user) {
-          return user.city;
+        resolve(post) {
+          return post.city;
         }
       },
       state: {
         type: GraphQLString,
-        resolve(user) {
-          return user.state;
+        resolve(post) {
+          return post.state;
         }
       },
-      availability: {
+      date: {
         type: GraphQLString,
         resolve(post) {
-          return post.availability;
+          return post.date;
         }
       },
+      startTime: {
+        type: GraphQLString,
+        resolve(post) {
+          return post.startTime;
+        }
+      },
+      endTime: {
+        type: GraphQLString,
+        resolve(post) {
+          return post.endTime;
+        }
+      }
     };
   }
 });
@@ -176,6 +194,38 @@ const Mutation = new GraphQLObjectType({
               admin: false,
             }`
           });
+        }
+      },
+      addPost: {
+        type: Post,
+        args: {
+          title: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          quantity: {
+            type: new GraphQLNonNull(GraphQLInt)
+          },
+          instructions: {
+            type: GraphQLString
+          },
+          address: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          city: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          state: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          date: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          startTime: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          endTime: {
+            type: new GraphQLNonNull(GraphQLString)
+          }
         }
       }
     };
