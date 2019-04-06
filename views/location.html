@@ -42,7 +42,7 @@
             </div>
             
             <div class="row justify-content-center">
-                <div class="card" style="max-width: 12000rem;">
+                <div class="card" style="max-width: 12rem;">
                     <!-- <img src="../views/photos/citron-154449_960_720.png" class="card-img-top" alt="Lemon"> -->
                     <div class="card-body">
                         <div id="map"></div>
@@ -53,6 +53,11 @@
                               zoom: 2,
                               center: new google.maps.LatLng(2.8,-187.3),
                               mapTypeId: 'terrain'
+                            });
+                            var marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(37.87,-122.27),
+                            map: map,
+                            title: 'You are here!'
                             });
                     
                             // Create a <script> tag and set the USGS URL as the source.
