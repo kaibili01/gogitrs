@@ -75,6 +75,17 @@
           map: map,
           title: 'You are here!'
           });
+          var contentString = '<div id="content">'+ 'You are here'+'</div>';
+          marker.addListener('click', function() {
+          infowindow.open(map, marker);
+          map.setZoom(14);
+          map.setCenter(marker.getPosition());
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200
+        });
 
         // Create a <script> tag and set the USGS URL as the source.
         var script = document.createElement('script');
@@ -101,6 +112,8 @@
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8&callback=initMap">
     </script>
+    <script async defer scr="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,
+    +Mountain+View,+CA&key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8"></script>
        
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
