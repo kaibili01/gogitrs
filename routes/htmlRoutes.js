@@ -1,5 +1,6 @@
-var db = require("../models/db");
-
+const Schema = require("../graphql/Schema");
+const db = require("../models/db");
+const { graphql } = require("graphql");
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
@@ -15,6 +16,36 @@ module.exports = function (app) {
   app.get("/login", function (req, res) {
     res.render("login", {
       layout: "login-layout"
+    });
+  });
+  app.get("/feed", function (req, res) {
+    graphql(
+      Schema,
+      `
+        {
+          posts {
+            quantity
+            title
+            city
+            state
+            date
+            startTime
+            endTime
+            postedBy {
+              username
+              email
+            }
+          }
+        }
+      `,
+      (root, args) => {
+        return db.sequelize.models.Post.findAll({ where: args });
+      }
+    ).then(response => {
+      res.render("searchResults", {
+        layout: "login-layout",
+        posts: response.data.posts
+      });
     });
   });
   // Load example page and pass in an example by id
