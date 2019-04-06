@@ -1,5 +1,5 @@
 const regBtn = $("#register-button");
-
+console.log("This is the register page!");
 regBtn.on("click", event => {
   event.preventDefault();
   const email = $("#email")
@@ -11,7 +11,7 @@ regBtn.on("click", event => {
   const lastName = $("#last-name")
     .val()
     .trim();
-  const username = $("#user-name")
+  const username = $("#username")
     .val()
     .trim();
   const password1 = $("#password1")
