@@ -1,4 +1,4 @@
-const { GraphQLSchema } = require("graphql");
+const { GraphQLSchema } = require("graphql/");
 const Query = require("./Query");
 const Mutation = require("./Mutation");
 

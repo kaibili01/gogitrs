@@ -1,8 +1,10 @@
-const regBtn = $("#registerButton");
+const regBtn = $("#register-button");
 
 regBtn.on("click", event => {
   event.preventDefault();
-  const email = $("#email").val();
+  const email = $("#email")
+    .val()
+    .trim();
   const firstName = $("#first-name")
     .val()
     .trim();
