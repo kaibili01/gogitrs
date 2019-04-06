@@ -1,3 +1,5 @@
+console.log("This is the register page!");
+
 $("#login-btn").on("click", () => {
   const userEntry = $("#user-entry")
     .val()

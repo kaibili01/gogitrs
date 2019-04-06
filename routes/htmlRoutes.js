@@ -9,7 +9,12 @@ module.exports = function (app) {
   });
   app.get("/register", function (req, res) {
     res.render("register", {
-      layout: "registration"
+      layout: "register-layout"
+    });
+  });
+  app.get("/login", function (req, res) {
+    res.render("login", {
+      layout: "login-layout"
     });
   });
   // Load example page and pass in an example by id
