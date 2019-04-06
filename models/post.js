@@ -1,16 +1,28 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define("Post", {
     title: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
-    description: {
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    instructions: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: true
     },
-    availability: {
+    date: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: false
+    },
+    startTime: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    endTime: {
+      type: DataTypes.TEXT,
+      alloqNull: false
     },
     address: {
       type: DataTypes.STRING,
@@ -23,7 +35,7 @@ module.exports = function (sequelize, DataTypes) {
     state: {
       type: DataTypes.STRING,
       allowNull: false
-    },
+    }
   });
 
   return Post;
