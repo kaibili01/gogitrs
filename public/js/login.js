@@ -8,11 +8,6 @@ $("#login-btn").on("click", () => {
   const query = `
     mutation login($userEntry: String!, $passwordEntry: String!) {
       login(username: $userEntry, password: $passwordEntry){
-        user {
-          username
-          firstName
-          lastName
-        }
         token
       }
     }`;
@@ -28,5 +23,9 @@ $("#login-btn").on("click", () => {
     })
   })
     .then(r => r.json())
-    .then(data => console.log("data returned:", data)); //PROBABLY MAKE THIS INTO A COOKIE OR SOMETHING
+    .then(data => {
+      console.log("data returned:", data);
+      //initializes user token as cookie
+      document.cookie = "jwt=" + data.data.login.token;
+    });
 });
