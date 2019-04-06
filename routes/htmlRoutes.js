@@ -18,6 +18,11 @@ module.exports = app => {
       layout: "login-layout"
     });
   });
+  app.get("/newpost", (req, res) => {
+    res.render("new-post", {
+      layout: "new-post-layout"
+    });
+  });
   app.get("/feed", (req, res) => {
     graphql(
       Schema,
