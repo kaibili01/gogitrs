@@ -1,13 +1,197 @@
+
+.list-group-item {
+    line-height: 2.5;
+  }
+  
+  @font-face {
+    font-family: orangejuice;
+    src: url("../font/orange\ juice\ 2.0.ttf")
+  }
+  
+  @font-face {
+    font-family: fingerpaint;
+    src: url("../font/FingerPaint-Regular.ttf")
+  }
+  
+  body {
+    background-color: rgb(253, 243, 224);
+    /* min-height: 100%; */
+    /* min-width: 100%; */
+    border: 6px double rgb(88, 34, 34);
+    min-height: 100vh;
+    
+  }
+  
+  .headerText {
+    font-family: orangejuice;
+    color: rgb(243, 130, 1);
+    font-size: 85px;
+    margin-top: 3vh;
+    text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .newUserInput {
+    margin-top: 3vh;
+  }
+  
+  .subHeader {
+    font-family: fingerpaint;
+    color: rgb(243, 174, 1);
+    margin-top: 1vh;
+    text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  
+
+  
+  
+  /* .container {  */
+    /* border: 6px double rgb(88, 34, 34); */
+    /* min-height: 100%;
+    width: 100%; */
+  /* }  */
+
+  
+
+     
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
- #map {
-  margin: 40px auto;
-  height: 50%;
-  width: 40%
-  }
-  /* Optional: Makes the sample page fill the window. */
-  html, body {
+
+
+/* Custom, iPhone 6 & 7 *  */
+@media only screen and (min-width : 375px) { 
+	#map {
+        height: 500px;
+        width:335px;
+        margin-bottom:5%;
+        margin-top:-5%;
+        border-style:solid;
+        border-width:2px;
+        border-color: black;
+        /* margin-left:3%; */
+        /* margin-right:50%; */
+    }
+    .UserLocation {
+        margin-left:0%;
+    }
+   /* .headerText {
+       font-size:50%;
+       
+   }  */
+ }
+
+ /* Custom, iPhone 6 & 7 PLUS *  */
+@media only screen and (min-width : 414px) { 
+	#map {
+        height: 500px;
+        width:375px;
+        margin-bottom:5%;
+        margin-top:-5%;
+        border-style:solid;
+        border-width:2px;
+        border-color: black;
+        /* margin-left:3%; */
+        /* margin-right:50%; */
+    }
+    .UserLocation {
+        margin-left:3%;
+    }
+
+   /* .headerText {
+       font-size:50%;
+       
+   }  */
+ }
+
+ /* Custom, iPad *  */
+@media only screen and (min-width : 768px) { 
+	#map {
+        height: 500px;
+        width:700px;
+        margin-bottom:5%;
+        margin-top:-5%;
+        border-style:solid;
+        border-width:2px;
+        border-color: black;
+        /* margin-left:3%; */
+        /* margin-right:50%; */
+    }
+    .UserLocation {
+        margin-left:15%;
+    }
+
+   /* .headerText {
+       font-size:50%;
+       
+   }  */
+ }
+
+
+/* Custom, iPad Pro *  */
+@media only screen and (min-width : 1024px) { 
+	#map {
+        height: 500px;
+        width:940px;
+        margin-bottom:5%;
+        margin-top:-5%;
+        border-style:solid;
+        border-width:2px;
+        border-color: black;
+        /* margin-left:3%; */
+        /* margin-right:50%; */
+    }
+    .UserLocation {
+        margin-left:18%;
+    }
+
+   /* .headerText {
+       font-size:50%;
+       
+   }  */
+ }
+
+
+ /* Custom, full width screen @ 1680px*  */
+@media only screen and (min-width : 1637px) { 
+	#map {
+         /* height: 500px; */
+         width:500px;
+         /* margin-bottom:30%; */
+         margin-top:1px;
+         margin-left:28%;
+         border-style:solid;
+         border-width:4px;
+         border-color: black;
+        /* margin-right:50%; */
+    }
+
+    .UserLocation {
+          margin-left:18%;
+         
+        }
+
+    }
+
+    .footer {
+      
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      margin-left:0%;
+      margin-bottom: 20%;
+      opacity: 0.2;
+    }
+
+    /* .headerText {
+        font-size: medium;        
+    }  */
+    
+ 
+
+
+ /* Optional: Makes the sample page fill the window. */
+/* html, body {
     height: 100%;
-    margin: 0;
+    margin-top: 0%;
     padding: 0;
-  }
+  } */
