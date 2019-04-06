@@ -1,24 +1,24 @@
 const Schema = require("../graphql/Schema");
 const db = require("../models/db");
 const { graphql } = require("graphql");
-module.exports = function (app) {
+module.exports = app => {
   // Load index page
-  app.get("/", function (req, res) {
+  app.get("/", (req, res) => {
     res.render("index", {
       msg: "Welcome!"
     });
   });
-  app.get("/register", function (req, res) {
+  app.get("/register", (req, res) => {
     res.render("register", {
       layout: "register-layout"
     });
   });
-  app.get("/login", function (req, res) {
+  app.get("/login", (req, res) => {
     res.render("login", {
       layout: "login-layout"
     });
   });
-  app.get("/feed", function (req, res) {
+  app.get("/feed", (req, res) => {
     graphql(
       Schema,
       `
@@ -26,6 +26,7 @@ module.exports = function (app) {
           posts {
             quantity
             title
+            instructions
             city
             state
             date
