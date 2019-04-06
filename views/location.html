@@ -69,6 +69,12 @@
           center: new google.maps.LatLng(37.87,-122.27),
           mapTypeId: 'terrain'
         });
+        var marker = new google.maps.Marker({
+          
+          position: new google.maps.LatLng(37.87,-122.27),
+          map: map,
+          title: 'You are here!'
+          });
 
         // Create a <script> tag and set the USGS URL as the source.
         var script = document.createElement('script');
