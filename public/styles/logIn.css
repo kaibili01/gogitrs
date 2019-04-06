@@ -24,6 +24,8 @@
     margin-top: 3vh;
   }
   
+  
+
   .logInInput {
     margin-top: 15vh;
   }
@@ -47,11 +49,11 @@
     min-height: 100vh;
   }
 
-  #goHomeButton  {
+  #home-button  {
     color: black !important;
   }
   
-  #logInButton {
+  #login-button {
       color: black !important;
   }
 
