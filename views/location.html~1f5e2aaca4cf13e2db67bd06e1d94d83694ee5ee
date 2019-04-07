@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>farmShare</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+         <link rel="stylesheet" href="../public/styles/map.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="headerText text-center">
+                        Farm Share!
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="subHeader text-center">
+                        Who's giving fruit away?
+                    </h3>
+                </div>
+            </div>
+                     
+<br>
+<br>    
+
+<div id="map"></div>
+
+    <div class="row UserLocation">
+        <div class="col-10 offset-1">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="form-group col-md-">
+                          </div>
+                
+                          <div class="row UserLocation">
+                                <div class="col-10 offset-1">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin"></i></span>
+                                                    </div>
+                                                <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
+                                                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                                            </div>
+
+                                        
+                                        </div>
+                                    </div>
+
+    <div class="row footer">
+        <div class="col-12">
+            <a><p class="text-center">Copyright 2019 </p> </a>
+        </div>
+    </div>
+        
+   
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: new google.maps.LatLng(37.87,-122.27),
+          mapTypeId: 'roadmap'
+        });
+
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(37.87,-122.27),
+          map: map,
+          title: 'You are here!'
+          });
+        var contentString = '<div id="content">'+ 'You are here'+'</div>';
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+          map.setZoom(14);
+          map.setCenter(marker.getPosition());
+        });
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200
+        });
+
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+    }
+
+     
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8&callback=initMap">
+    </script>
+    <script async defer scr="https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,
+    +Mountain+View,+CA&key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8"></script>
+       
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="../public/js/welcomePage.js" async defer></script>
+    </body>
+</html>

@@ -15,6 +15,8 @@
   body {
     background-color: rgb(253, 243, 224);
     min-height: 100%;
+    border: 6px double rgb(88, 34, 34);
+    min-height: 100vh;
   }
   
   .headerText {
@@ -24,6 +26,8 @@
     margin-top: 3vh;
   }
   
+  
+
   .logInInput {
     margin-top: 15vh;
   }
@@ -42,16 +46,16 @@
     text-align: center;
   }
   
-  .container {
+  /* .container {
     border: 6px double rgb(88, 34, 34);
     min-height: 100vh;
-  }
+  } */
 
-  #goHomeButton  {
+  #home-button  {
     color: black !important;
   }
   
-  #logInButton {
+  #login-button {
       color: black !important;
   }
 

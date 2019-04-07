@@ -22,6 +22,8 @@
     color: rgb(243, 130, 1);
     font-size: 85px;
     margin-top: 3vh;
+    text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
+
   }
   
   .homePageRow {
