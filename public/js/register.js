@@ -17,9 +17,15 @@ regBtn.on("click", event => {
   const password1 = $("#password1")
     .val()
     .trim();
-  const password2 = $("password2")
+  const password2 = $("#password2")
     .val()
     .trim();
+  console.log("email:", email);
+  console.log("firstName:", firstName);
+  console.log("lastName:", lastName);
+  console.log("username:", username);
+  console.log("password1:", password1);
+  console.log("password2:", password2);
   let password;
   if (password1 !== password2) {
     $("#password-div")
@@ -34,7 +40,9 @@ regBtn.on("click", event => {
   } else {
     password = password1;
     const query = `mutation addUser($firstName: String!, $lastName: String!, $username: String!, $email: String!, $password: String!) {
-      addUser(firstName: $firstName, lastName: $lastName, username: $username, email: $email, password: $password)
+      addUser(firstName: $firstName, lastName: $lastName, username: $username, email: $email, password: $password) {
+        id
+      }
     }`;
     fetch("/graphql", {
       method: "POST",
