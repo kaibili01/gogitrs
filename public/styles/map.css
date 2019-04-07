@@ -14,8 +14,10 @@
   }
   
   body {
-    background-color: rgb(253, 243, 224);
-    /* min-height: 100%; */
+    background-image:url("./backgrounds/fruitbackground.jpg");
+    /* background-image:url("https://wallimpex.com/data/out/673/bohemian-backgrounds-10270975.jpg"); */
+    /* background-color: rgb(253, 243, 224); */
+    /* min-height: 100%; *
     /* min-width: 100%; */
     border: 6px double rgb(88, 34, 34);
     min-height: 100vh;
@@ -26,8 +28,12 @@
     font-family: orangejuice;
     color: rgb(243, 130, 1);
     font-size: 85px;
-    margin-top: 3vh;
+    /* margin-top: 3vh; */
     text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
+    /* display: inline; */
+    /* background-color:black; */
+    
+    
   }
   
   .newUserInput {
@@ -39,6 +45,7 @@
     color: rgb(243, 174, 1);
     margin-top: 1vh;
     text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
+    /* background-color:black; */
   }
 
   
