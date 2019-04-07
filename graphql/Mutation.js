@@ -114,7 +114,26 @@ const Mutation = new GraphQLObjectType({
           },
           endTime: {
             type: new GraphQLNonNull(GraphQLString)
+          },
+          userId: {
+            type: new GraphQLNonNull(GraphQLInt)
           }
+        },
+        resolve(parent, args) {
+          return db.sequelize.models.User.findById(args.userId).then(user => {
+            return user.createPost({
+              title: args.title,
+              lastName: args.lastName,
+              quantity: args.quantity,
+              instructions: args.instructions,
+              address: args.address,
+              city: args.city,
+              state: args.state,
+              date: args.date,
+              startTime: args.startTime,
+              endTime: args.endTime
+            });
+          });
         }
       }
     };
