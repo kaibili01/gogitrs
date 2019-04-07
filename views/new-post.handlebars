@@ -26,17 +26,48 @@
           aria-describedby="basic-addon1">
       </div>
     </div>
-    <div class="row">
-      <div class="col">
+    <div id="locationField">
+      <input id="autocomplete"
+             placeholder="Enter your address"
+             onFocus="geolocate()"
+             type="text"/>
+    </div>
+    <table id="address">
+      <tr>
+        <td class="label">Street address</td>
+        <td class="slimField"><input class="field" id="street_number" disabled="true"/></td>
+        <td class="wideField" colspan="2"><input class="field" id="route" disabled="true"/></td>
+      </tr>
+      <tr>
+        <td class="label">City</td>
+        <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true"/></td>
+      </tr>
+      <tr>
+        <td class="label">State</td>
+        <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true"/></td>
+        <td class="label">Zip code</td>
+        <td class="wideField"><input class="field" id="postal_code" disabled="true"/></td>
+      </tr>
+      <tr>
+        <td class="label">Country</td>
+        <td class="wideField" colspan="3"><input class="field" id="country" disabled="true"/></td>
+      </tr>
+    </table>
+    {{!-- <div class="row">
+      <div class="col-4">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Address" aria-label="Username"
+          <input type="text" id = "street_number" class="form-control" placeholder="Street Number" aria-label="Username"
             aria-describedby="basic-addon1">
         </div>
+      </div>
+      <div class="col-8">
+        <input id="locality" id ="route" type="text" class="form-control" placeholder="Street Name" aria-label="Username"
+          aria-describedby="basic-addon1">
       </div>
     </div>
     <div class="row justify-content-between">
       <div class="col-4">
-        <input id="city" type="text" class="form-control" placeholder="City" aria-label="Username"
+        <input id="locality" type="text" class="form-control" placeholder="City" aria-label="Username"
           aria-describedby="basic-addon1">
       </div>
       <div class="col-4">
@@ -50,7 +81,14 @@
           </div>
         </div>
       </div>
+      <input id="administrative_area_level_1" type="text" class="form-control" placeholder="State" aria-label="Username"
+          aria-describedby="basic-addon1">
+
     </div>
+    <div class="col-4">
+        <input id="postal_code" type="text" class="form-control" placeholder="Zip Code" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div> --}}
     <div class="row">
       <div class="col-4">
         <input type="date" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
@@ -94,4 +132,7 @@
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8&libraries=places&callback=initAutocomplete"
+        async defer></script>
 <script src="/js/homeOwner.js" async defer></script>
+<script src="/js/autocompleteaddress.js" async defer></script>
