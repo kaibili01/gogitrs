@@ -29,7 +29,8 @@
                      
 <br>
 <br>    
-    <div id="map"></div>
+
+<div id="map"></div>
 
     <div class="row UserLocation">
         <div class="col-10 offset-1">
@@ -48,6 +49,7 @@
                                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin"></i></span>
                                                     </div>
                                                 <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
+                                                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                                             </div>
 
                                         
@@ -67,16 +69,16 @@
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: new google.maps.LatLng(37.87,-122.27),
-          mapTypeId: 'terrain'
+          mapTypeId: 'roadmap'
         });
+
         var marker = new google.maps.Marker({
-          
           position: new google.maps.LatLng(37.87,-122.27),
           map: map,
           title: 'You are here!'
           });
-          var contentString = '<div id="content">'+ 'You are here'+'</div>';
-          marker.addListener('click', function() {
+        var contentString = '<div id="content">'+ 'You are here'+'</div>';
+        marker.addListener('click', function() {
           infowindow.open(map, marker);
           map.setZoom(14);
           map.setCenter(marker.getPosition());
@@ -93,7 +95,6 @@
         // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
         script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
         document.getElementsByTagName('head')[0].appendChild(script);
-      }
 
       // Loop through the results array and place a marker for each
       // set of coordinates.
@@ -107,6 +108,7 @@
           });
         }
       }
+    }
 
      
     </script>
