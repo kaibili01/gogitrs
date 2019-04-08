@@ -15,13 +15,17 @@ $(document).ready(() => {
   $(document).on("click", ".calendar-btn", event => {
     event.preventDefault();
     const postId = parseInt(event.target.attributes["data-post"].nodeValue);
-    console.log("postId:", postId);
     const jwt = getCookie("jwt");
     const query = `
-      mutation addReservation($jwt: String!, $postId: Int!) {
-        addReservation(jwt: $jwt, postId:$postId)
+    mutation addReservation($jwt: String!, $postId: Int!) {
+      addReservation(jwt: $jwt, postId:$postId){
+        id
       }
+    }
     `;
+    console.log(query);
+    console.log("postId:", postId);
+    console.log("jwt:", jwt);
     fetch("/graphql", {
       method: "POST",
       headers: {
