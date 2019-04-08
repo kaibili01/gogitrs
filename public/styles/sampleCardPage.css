@@ -73,7 +73,8 @@
     height:30px;
     width:100%;
     padding-left: 30px;
-    /* background-color: rgb(253, 243, 224); */
+    background-color: rgb(253, 243, 224);
+    opacity: 0.2;
   }
 
   @media only screen and (min-width : 375px) { 
