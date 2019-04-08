@@ -23,6 +23,11 @@ module.exports = app => {
       layout: "new-post-layout"
     });
   });
+  app.get("/home", (req, res) => {
+    res.render("navigation", {
+      layout: "navigation-layout"
+    })
+  })
   app.get("/feed", (req, res) => {
     graphql(
       Schema,
