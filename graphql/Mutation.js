@@ -7,7 +7,7 @@ const {
 const bcrypt = require("bcrypt-nodejs");
 const jwt = require("jsonwebtoken");
 const db = require("../models/db");
-const { User, Post, AuthPayload } = require("./TypeDefs");
+const { User, Post, AuthPayload, Reservation } = require("./TypeDefs");
 require("dotenv").config();
 
 const Mutation = new GraphQLObjectType({
@@ -76,7 +76,6 @@ const Mutation = new GraphQLObjectType({
             username: args.username,
             password: bcrypt.hashSync(args.password),
             email: args.email.toLowerCase(),
-            calendar: "[]",
             permissions: `{
               post: true,
               harvest: true,
@@ -141,6 +140,24 @@ const Mutation = new GraphQLObjectType({
               });
             }
           );
+        }
+      },
+      addReservation: {
+        type: Reservation,
+        args: {
+          jwt: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          postId: {
+            type: new GraphQLNonNull(GraphQLInt)
+          }
+        },
+        async resolve(parent, args) {
+          const decrypted = jwt.verify(args.jwt, process.env.APP_SECRET);
+          return db.sequelize.models.Reservation.create({
+            UserId: decrypted.userId,
+            PostId: args.postId
+          });
         }
       }
     };

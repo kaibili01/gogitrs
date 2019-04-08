@@ -8,6 +8,8 @@ const getCookie = name => {
       .shift();
   }
 };
-if (getCookie("jwt")) {
-  window.location.href = "/feed";
-}
+$(document).ready(() => {
+  if (getCookie("jwt")) {
+    window.location.href = "/feed";
+  }
+});
