@@ -21,10 +21,10 @@
                 <p>{{this.city}}, {{this.state}}</p>
                 <p class="card-text text-center">{{this.date}}, {{this.startTime}}—{{this.endTime}}</p>
                 <p>Instructions: {{this.instructions}}</p>
-                <p>Posted by {{this.user.username}}</p>
+                <p>Posted by <b>{{this.postedBy.username}}</b></p>
                 <div class="row">
                     <div class="col">
-                        <a href="mailto:{{this.user.email}}" class="btn btn-link">Contact</a>
+                        <a href="mailto:{{this.postedBy.email}}" class="btn btn-link">Contact</a>
                     </div>
                     <div class="col">
                         <a href="#" data-post="{{this.id}}" class="btn btn-link calendar-btn">Add to Calendar</a>
