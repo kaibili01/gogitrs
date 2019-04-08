@@ -66,10 +66,6 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      calendar: {
-        type: DataTypes.TEXT,
-        allowNull: true
-      },
       permissions: {
         type: DataTypes.TEXT,
         allowNull: true

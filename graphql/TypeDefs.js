@@ -41,12 +41,6 @@ const User = new GraphQLObjectType({
           return user.email;
         }
       },
-      calendar: {
-        type: GraphQLString,
-        resolve(user) {
-          return user.calendar;
-        }
-      },
       permissions: {
         type: GraphQLString,
         resolve(user) {
@@ -144,15 +138,41 @@ const AuthPayload = new GraphQLObjectType({
       user: {
         type: User,
         resolve(payload) {
-          return payload.user;
+          return payload.getUser();
         }
       }
     };
   }
 });
-
+const Reservation = new GraphQLObjectType({
+  name: "Reservation",
+  description: "This is how a user knows what events he has RSVPd to.",
+  fields: () => {
+    return {
+      id: {
+        type: GraphQLInt,
+        resolve(reservation) {
+          return reservation.id;
+        }
+      },
+      user: {
+        type: User,
+        resolve(reservation) {
+          return reservation.getUser();
+        }
+      },
+      post: {
+        type: Post,
+        resolve(reservation) {
+          return reservation.getPost();
+        }
+      }
+    };
+  }
+});
 module.exports = {
   User,
   Post,
-  AuthPayload
+  AuthPayload,
+  Reservation
 };

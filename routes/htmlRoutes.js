@@ -34,6 +34,7 @@ module.exports = app => {
       `
         {
           posts {
+            id
             quantity
             title
             instructions
@@ -54,7 +55,7 @@ module.exports = app => {
       }
     ).then(response => {
       res.render("searchResults", {
-        layout: "login-layout",
+        layout: "searchResults-layout",
         posts: response.data.posts
       });
     });

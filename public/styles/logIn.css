@@ -36,12 +36,18 @@
     margin-top: 1vh;
   }
 
+  .forgotPW {
+    font-size: 10px;
+    
+}
+
   .footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     text-align: center;
+
     opacity: 0.2;
   }
 
@@ -51,6 +57,10 @@
     bottom: 0;
     width: 100%;
     text-align: center;
+  }
+
+  .Copyright{
+    opacity: 0.2;
   }
   
   /* .container {
@@ -66,6 +76,4 @@
       color: black !important;
   }
 
-  .forgotPW {
-      font-size: 10px;
-  }
+  

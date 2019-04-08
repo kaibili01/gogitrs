@@ -7,7 +7,7 @@ const {
 const bcrypt = require("bcrypt-nodejs");
 const jwt = require("jsonwebtoken");
 const db = require("../models/db");
-const { User, Post, AuthPayload } = require("./TypeDefs");
+const { User, Post, AuthPayload, Reservation } = require("./TypeDefs");
 require("dotenv").config();
 
 const Mutation = new GraphQLObjectType({
@@ -76,7 +76,6 @@ const Mutation = new GraphQLObjectType({
             username: args.username,
             password: bcrypt.hashSync(args.password),
             email: args.email.toLowerCase(),
-            calendar: "[]",
             permissions: `{
               post: true,
               harvest: true,
@@ -116,23 +115,48 @@ const Mutation = new GraphQLObjectType({
             type: new GraphQLNonNull(GraphQLString)
           },
           userId: {
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        },
+        async resolve(parent, args) {
+          const decrypted = jwt.verify(args.userId, process.env.APP_SECRET);
+          console.log("decrypted:", decrypted);
+          db.sequelize.models.User.findByPk(decrypted.userId).then(result => {
+            console.log("result: ", result);
+          });
+          return db.sequelize.models.User.findByPk(decrypted.userId).then(
+            user => {
+              return user.createPost({
+                title: args.title,
+                lastName: args.lastName,
+                quantity: args.quantity,
+                instructions: args.instructions,
+                address: args.address,
+                city: args.city,
+                state: args.state,
+                date: args.date,
+                startTime: args.startTime,
+                endTime: args.endTime
+              });
+            }
+          );
+        }
+      },
+      addReservation: {
+        type: Reservation,
+        args: {
+          jwt: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          postId: {
             type: new GraphQLNonNull(GraphQLInt)
           }
         },
-        resolve(parent, args) {
-          return db.sequelize.models.User.findById(args.userId).then(user => {
-            return user.createPost({
-              title: args.title,
-              lastName: args.lastName,
-              quantity: args.quantity,
-              instructions: args.instructions,
-              address: args.address,
-              city: args.city,
-              state: args.state,
-              date: args.date,
-              startTime: args.startTime,
-              endTime: args.endTime
-            });
+        async resolve(parent, args) {
+          const decrypted = jwt.verify(args.jwt, process.env.APP_SECRET);
+          return db.sequelize.models.Reservation.create({
+            UserId: decrypted.userId,
+            PostId: args.postId
           });
         }
       }
