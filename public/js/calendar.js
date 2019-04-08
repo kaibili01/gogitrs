@@ -1,4 +1,16 @@
-// const cookie = document.cookie;
+const getCookie = name => {
+  const value = "; " + document.cookie;
+  const parts = value.split("; " + name + "=");
+  if (parts.length === 2) {
+    return parts
+      .pop()
+      .split(";")
+      .shift();
+  }
+};
+if (!getCookie("jwt")) {
+  window.location.href = "/login";
+}
 
 // var query = `query RollDice($dice: Int!, $sides: Int) {
 //   rollDice(numDice: $dice, numSides: $sides)
