@@ -26,8 +26,6 @@
     margin-top: 3vh;
   }
   
-  
-
   .logInInput {
     margin-top: 15vh;
   }
@@ -49,7 +47,16 @@
     bottom: 0;
     width: 100%;
     text-align: center;
-    
+
+    opacity: 0.2;
+  }
+
+  .pwfooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
   }
 
   .Copyright{
