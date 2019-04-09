@@ -1,0 +1,78 @@
+.list-group-item {
+    line-height: 2.5;
+  }
+  
+  @font-face {
+    font-family: orangejuice;
+    src: url("../font/orange\ juice\ 2.0.ttf")
+  }
+  
+  @font-face {
+    font-family: fingerpaint;
+    src: url("../font/FingerPaint-Regular.ttf")
+  }
+  
+  body {
+    background-image:url("./backgrounds/fruitbackground2.jpg");
+    /* background-color: rgb(253, 243, 224); */
+    /* min-height: 100%; */
+    border: 6px double rgb(88, 34, 34);
+    min-height: 100vh;
+  }
+  
+  .headerText {
+    font-family: orangejuice;
+    color: rgb(243, 130, 1);
+    font-size: 70px;
+    /* margin-top: 3vh; */
+  }
+  
+  .homePageRow {
+    margin-top: 25vh;
+  }
+  
+  .register {
+    color: black !important;
+  }
+  
+  .logIn {
+    color: black !important;
+  }
+  
+  .subHeader {
+    font-family: fingerpaint;
+    color: rgb(243, 174, 1);
+    margin-top: -3vh;
+    text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .homePage {
+    border: 3px double rgb(243, 174, 1);
+    background-color: rgba(243, 130, 1, .1);
+    font-family: fingerpaint;
+    min-width: 110px;
+    padding: 15px;
+  }
+  
+  .homePage:hover {
+    background-color: rgba(243, 130, 1, .3);
+    transition-duration: 0.2s;
+  }
+  
+  .forgotPW {
+    font-size: 10px;
+  }
+  
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    opacity: 0.2;
+  }
+  
+  /* .container {
+    border: 6px double rgb(88, 34, 34);
+    min-height: 100vh;
+  } */

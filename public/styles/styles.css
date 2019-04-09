@@ -42,7 +42,7 @@ body {
 .subHeader {
   font-family: fingerpaint;
   color: rgb(243, 174, 1);
-  margin-top: -3vh;
+  margin-top: -1vh;
   text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
 }
 

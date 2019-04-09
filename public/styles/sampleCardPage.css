@@ -13,7 +13,9 @@
   }
   
   body {
-    background-color: rgb(253, 243, 224);
+    background-image:url("./backgrounds/fruitbackground4.jpg");
+
+    /* background-color: rgb(253, 243, 224); */
     /* min-height: 100%; */
     border: 6px double rgb(88, 34, 34);
     min-height: 100vh;
@@ -30,16 +32,18 @@
   .headerText {
     font-family: orangejuice;
     color: rgb(243, 130, 1);
-    font-size: 85px;
+    font-size: 70px;
     /* margin-top: 3vh; */
-    
+    /* text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1); */
     /* background-color: rgb(253, 243, 224); */
   }
 
   .subHeader {
     font-family: fingerpaint;
     color: rgb(243, 174, 1);
-    margin-top: 1vh;
+    font-size: 20px;
+    margin-top: -3vh;
+    /* text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1); */
   }
 
   /* .topRow {
@@ -47,6 +51,10 @@
   } */
   
   .homePageRow {
+    margin-top: 25vh;
+  }
+
+  .card col-10 {
     margin-top: 25vh;
   }
   
