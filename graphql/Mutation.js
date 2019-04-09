@@ -29,12 +29,10 @@ const Mutation = new GraphQLObjectType({
           const user = await db.sequelize.models.User.findOne({
             where: { username: args.username }
           });
-          console.log("Username: ", user.dataValues.username);
           if (!user) {
             throw new Error("No such user found");
           }
           let valid = await bcrypt.compareSync(args.password, user.password);
-          console.log("isValid:", valid);
           if (!valid) {
             throw new Error("Invalid password");
           }
@@ -43,7 +41,6 @@ const Mutation = new GraphQLObjectType({
             { userId: user.id },
             process.env.APP_SECRET
           );
-          console.log("JSON Web Token:", token);
           return {
             token,
             user
@@ -120,10 +117,6 @@ const Mutation = new GraphQLObjectType({
         },
         async resolve(parent, args) {
           const decrypted = jwt.verify(args.userId, process.env.APP_SECRET);
-          console.log("decrypted:", decrypted);
-          db.sequelize.models.User.findByPk(decrypted.userId).then(result => {
-            console.log("result: ", result);
-          });
           return db.sequelize.models.User.findByPk(decrypted.userId).then(
             user => {
               return user.createPost({
