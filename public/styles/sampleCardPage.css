@@ -1,0 +1,116 @@
+.list-group-item {
+    line-height: 2.5;
+  }
+  
+  @font-face {
+    font-family: orangejuice;
+    src: url("../font/orange\ juice\ 2.0.ttf")
+  }
+  
+  @font-face {
+    font-family: fingerpaint;
+    src: url("../font/FingerPaint-Regular.ttf")
+  }
+  
+  body {
+    background-color: rgb(253, 243, 224);
+    /* min-height: 100%; */
+    border: 6px double rgb(88, 34, 34);
+    min-height: 100vh;
+  }
+
+  .container {
+    /* border: 6px double rgb(88, 34, 34); */
+    min-height: 100vh;
+    min-width: 100vw;
+    /* border: 6px double rgb(88, 34, 34);
+    min-height: 100vh; */
+  }
+  
+  .headerText {
+    font-family: orangejuice;
+    color: rgb(243, 130, 1);
+    font-size: 85px;
+    /* margin-top: 3vh; */
+    
+    /* background-color: rgb(253, 243, 224); */
+  }
+
+  .subHeader {
+    font-family: fingerpaint;
+    color: rgb(243, 174, 1);
+    margin-top: 1vh;
+  }
+
+  /* .topRow {
+    background-color: rgb(253, 243, 224); 
+  } */
+  
+  .homePageRow {
+    margin-top: 25vh;
+  }
+  
+  .register {
+    color: black !important;
+  }
+  
+  .logIn {
+    color: black !important;
+  }
+  
+  .forgotPW {
+    font-size: 10px;
+  }
+
+  .Copyright{
+    opacity: 0.2;
+  }
+
+  .footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    padding-left: 30px;
+    background-color: rgb(253, 243, 224);
+    opacity: 0.2;
+  }
+
+  @media only screen and (min-width : 375px) { 
+    .toprow {
+          
+          /* margin-bottom:0%; */
+          /* margin-top:4%; */
+          margin-left:-8%;
+          
+         /* margin-right:50%; */
+      }
+      .headerText {
+        font-size: 80px; 
+      }
+    }
+
+    /* Custom, full width screen @ 1680px*  */
+@media only screen and (min-width : 1680px) { 
+.toprow {
+         
+         /* margin-bottom:30%; */
+         /* margin-top:1px; */
+         margin-left:0%;
+        /* margin-right:50%; */
+    
+    }
+  }
+
+  /* Custom, iPad Pro *  */
+@media only screen and (min-width : 1024px) { 
+  .toprow {
+           
+           /* margin-bottom:30%; */
+           /* margin-top:1px; */
+           margin-left:0%;
+          /* margin-right:50%; */
+      
+      }
+    }

@@ -1,0 +1,287 @@
+
+.list-group-item {
+    line-height: 2.5;
+  }
+  
+  @font-face {
+    font-family: orangejuice;
+    src: url("../font/orange\ juice\ 2.0.ttf")
+  }
+  
+  @font-face {
+    font-family: fingerpaint;
+    src: url("../font/FingerPaint-Regular.ttf")
+  }
+  
+  body {
+    background-image:url("./backgrounds/fruitbackground.jpg");
+    /* background-image:url("https://wallimpex.com/data/out/673/bohemian-backgrounds-10270975.jpg"); */
+    /* background-color: rgb(253, 243, 224); */
+    /* min-height: 100%; *
+    /* min-width: 100%; */
+    border: 6px double rgb(88, 34, 34);
+    min-height: 100vh;
+    
+  }
+  
+  .headerText {
+    font-family: orangejuice;
+    color: rgb(243, 130, 1);
+    font-size: 70px;
+    /* margin-top: 3vh; */
+    text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
+    /* display: inline; */
+    /* background-color:black; */
+    
+    
+  }
+  
+  .newUserInput {
+    margin-top: 3vh;
+  }
+  
+  .subHeader {
+    font-family: fingerpaint;
+    color: rgb(243, 174, 1);
+    font-size: 20px;
+    margin-top: -3vh;
+    text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
+    /* background-color:black; */
+  }
+
+  
+  
+  
+  /* .container {  */
+    /* border: 6px double rgb(88, 34, 34); */
+    /* min-height: 100%;
+    width: 100%; */
+  /* }  */
+
+  
+
+     
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+
+
+/* Custom, iPhone 6 & 7 *  */
+@media only screen and (min-width : 375px) { 
+	#map {
+        height: 500px;
+        width:335px;
+        margin-bottom:5%;
+        margin-top:-5%;
+        border-style:solid;
+        border-width:2px;
+        border-color: black;
+        /* margin-left:3%; */
+        /* margin-right:50%; */
+    }
+    .UserLocation {
+        margin-left:0%;
+    }
+
+     /* #pac-input {
+      margin-left:0%;
+  }  */
+   /* .headerText {
+       font-size:50%;
+       
+   }  */
+ }
+
+ /* Custom, iPhone 6 & 7 PLUS *  */
+@media only screen and (min-width : 414px) { 
+	#map {
+        height: 500px;
+        width:375px;
+        margin-bottom:5%;
+        margin-top:-5%;
+        border-style:solid;
+        border-width:2px;
+        border-color: black;
+        /* margin-left:3%; */
+        /* margin-right:50%; */
+    }
+    /* .UserLocation {
+        margin-left:3%;
+    } */
+
+   /* .headerText {
+       font-size:50%;
+       
+   }  */
+ }
+
+ /* Custom, iPad *  */
+@media only screen and (min-width : 768px) { 
+	#map {
+        height: 500px;
+        width:700px;
+        margin-bottom:5%;
+        margin-top:-5%;
+        border-style:solid;
+        border-width:2px;
+        border-color: black;
+        /* margin-left:3%; */
+        /* margin-right:50%; */
+    }
+    /* .UserLocation {
+        margin-left:15%;
+    } */
+
+   /* .headerText {
+       font-size:50%;
+       
+   }  */
+ }
+
+
+/* Custom, iPad Pro *  */
+@media only screen and (min-width : 1024px) { 
+	#map {
+        height: 500px;
+        width:940px;
+        margin-bottom:5%;
+        margin-top:-5%;
+        border-style:solid;
+        border-width:2px;
+        border-color: black;
+        /* margin-left:3%; */
+        /* margin-right:50%; */
+    }
+    /* .UserLocation {
+        margin-left:18%;
+    } */
+
+   /* .headerText {
+       font-size:50%;
+       
+   }  */
+ }
+
+
+ /* Custom, full width screen @ 1680px*  */
+@media only screen and (min-width : 1637px) { 
+	#map {
+         /* height: 500px; */
+         width:500px;
+         /* margin-bottom:30%; */
+         margin-top:1px;
+         margin-left:28%;
+         border-style:solid;
+         border-width:4px;
+         border-color: black;
+        /* margin-right:50%; */
+    }
+
+    /* .UserLocation {
+          margin-left:18%;
+         
+        } */
+
+      #locaPoints{
+          margin-left:0%;
+      }
+
+      /* .UserLocation {
+        margin-left:80%;
+    }  */
+
+    }
+
+    .footer {
+      
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      /* margin-left:0%; */
+      margin-bottom: 20%;
+      opacity: 0.2;
+    }
+
+    /* .headerText {
+        font-size: medium;        
+    }  */
+    
+ 
+
+
+ /* Optional: Makes the sample page fill the window. */
+/* html, body {
+    height: 100%;
+    margin-top: 0%;
+    padding: 0;
+  } */
+
+  #description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  #infowindow-content .title {
+    font-weight: bold;
+  }
+
+  #infowindow-content {
+    display: none;
+  }
+
+  #map #infowindow-content {
+    display: inline;
+  }
+
+  .pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+  }
+
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
+
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
+
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
+  #target {
+    width: 345px;
+  }
