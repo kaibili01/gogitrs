@@ -1,4 +1,3 @@
-console.log("calendar.js");
 $(document).ready(() => {
   const getCookie = name => {
     const value = "; " + document.cookie;
@@ -23,55 +22,55 @@ $(document).ready(() => {
       }
     }
     `;
-  console.log(userId);
-  console.log(query);
-  fetch("/graphql", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json"
-    },
-    body: JSON.stringify({
-      query,
-      variables: {
-        userId
-      }
-    })
-  })
-    .then(r => r.json())
-    .then(data => {
-      const id = data.data.reservations.map(x => x.post.id);
-      console.log(id);
-      const newQuery = `
-        query posts($id: [Int]) {
-          posts(id:$id) {
-            id
-            title
-            instructions
-            postedBy {
-              username
-              email
-            }
+  const getReservations = async () => {
+    const reservations = await fetch("/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        query,
+        variables: {
+          userId
+        }
+      })
+    });
+    const json = await reservations.json();
+    const id = json.data.reservations.map(x => x.post.id);
+    getPosts(id);
+  };
+  const getPosts = async id => {
+    const newQuery = `
+      query Post($id: [Int]) {
+        posts(id: $id) {
+          id
+          title
+          instructions
+          postedBy {
+            username
+            email
           }
         }
-      `;
-      console.log("new query:  ", newQuery);
-      fetch("/graphql", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          newQuery,
-          variables: {
-            id
-          }
-        })
+      }
+    `;
+    console.log("Ids: ", id);
+    console.log("new query:  ", newQuery);
+    const posts = await fetch("/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        newQuery,
+        variables: {
+          id
+        }
       })
-        .then(r => r.json())
-        .then(data => {
-          console.table(data);
-        });
     });
+    const json = await posts.json();
+    console.table(json);
+  };
+  getReservations();
 });
