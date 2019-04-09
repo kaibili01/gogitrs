@@ -1,53 +1,61 @@
 <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1 class="headerText text-center">
-                        Farm Share!
-                    </h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h3 class="subHeader text-center">
-                        Who's giving fruit away?
-                    </h3>
-                </div>
-            </div>                   
-            <br>
-            <br>    
-            <div id="floating-panel">
+    <div class="row">
+        <div class="col">
+            <h1 class="headerText text-center">
+                Farm Share!
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3 class="subHeader text-center">
+                Who's giving fruit away?
+            </h3>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div id="floating-panel">
         <strong>Start:</strong>
         <input id="start" class="controls" type="text" placeholder="Your Address">
         <br>
         <strong>End:</strong>
         <select id="end">
-        {{#each posts}}
-        <option value="{{this.address}}, {{this.city}}, {{this.state}}">{{this.address}}, {{this.city}}, {{this.state}}</option>
-        {{/each}}
+            {{#each posts}}
+            <option value="{{this.address}}, {{this.city}}, {{this.state}}">{{this.address}}, {{this.city}},
+                {{this.state}}</option>
+            {{/each}}
         </select>
-      </div>
+    </div>
 
-      <input id="pac-input" class="controls" type="text" placeholder="Search Box">      
-        <div id="map"></div>
-        <div id="right-panel"></div>
-      <div class="row justify-content-center">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <div id="right-panel"></div>
+    <div class="row justify-content-center">
         <div class="col-4 text-center">
             <a href="/feed">
                 <button type="button" class="btn btn-success">Back to Available Posts</button>
             </a>
         </div>
     </div>
-    <footer>    
-    <div class="row footer">
-        <div class="col-12">
-            <a><p class="text-center">Copyright 2019 </p> </a>
+    <footer>
+        <div class="row footer">
+            <div class="col-12">
+                <a>
+                    <p class="text-center">Copyright 2019 </p>
+                </a>
+            </div>
         </div>
-    </div>
     </footer>
-</div> 
+</div>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8&libraries=places&callback=initMap"></script>      
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="/js/searchMaps.js" async defer></script>
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key={{googleKey}}&libraries=places&callback=initMap"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
