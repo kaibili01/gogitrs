@@ -70,6 +70,39 @@ module.exports = app => {
       });
     });
   });
+
+  app.get("/maps", (req, res) => {
+    graphql(
+      Schema,
+      `
+        {
+          posts {
+            quantity
+            title
+            instructions
+            address
+            city
+            state
+            date
+            startTime
+            endTime
+            postedBy {
+              username
+              email
+            }
+          }
+        }
+      `,
+      (root, args) => {
+        return db.sequelize.models.Post.findAll({ where: args });
+      }
+    ).then(response => {
+      res.render("searchMaps", {
+        layout: "searchMaps-layout",
+        posts: response.data.posts
+      });
+    });
+  });
   // Load example page and pass in an example by id
   app.get("/example/:id", (req, res) => {
     db.Example.findOne({ where: { id: req.params.id } }).then(dbExample => {
