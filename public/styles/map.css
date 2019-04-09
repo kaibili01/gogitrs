@@ -27,7 +27,7 @@
   .headerText {
     font-family: orangejuice;
     color: rgb(243, 130, 1);
-    font-size: 85px;
+    font-size: 70px;
     /* margin-top: 3vh; */
     text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
     /* display: inline; */
@@ -43,13 +43,13 @@
   .subHeader {
     font-family: fingerpaint;
     color: rgb(243, 174, 1);
-    margin-top: 1vh;
+    font-size: 20px;
+    margin-top: -3vh;
     text-shadow: 10px 5px 10px rgba(0, 0, 0, 0.1);
     /* background-color:black; */
   }
 
   
-
   
   
   /* .container {  */
@@ -81,6 +81,10 @@
     .UserLocation {
         margin-left:0%;
     }
+
+     /* #pac-input {
+      margin-left:0%;
+  }  */
    /* .headerText {
        font-size:50%;
        
@@ -100,9 +104,9 @@
         /* margin-left:3%; */
         /* margin-right:50%; */
     }
-    .UserLocation {
+    /* .UserLocation {
         margin-left:3%;
-    }
+    } */
 
    /* .headerText {
        font-size:50%;
@@ -123,9 +127,9 @@
         /* margin-left:3%; */
         /* margin-right:50%; */
     }
-    .UserLocation {
+    /* .UserLocation {
         margin-left:15%;
-    }
+    } */
 
    /* .headerText {
        font-size:50%;
@@ -147,9 +151,9 @@
         /* margin-left:3%; */
         /* margin-right:50%; */
     }
-    .UserLocation {
+    /* .UserLocation {
         margin-left:18%;
-    }
+    } */
 
    /* .headerText {
        font-size:50%;
@@ -172,10 +176,18 @@
         /* margin-right:50%; */
     }
 
-    .UserLocation {
+    /* .UserLocation {
           margin-left:18%;
          
-        }
+        } */
+
+      #locaPoints{
+          margin-left:0%;
+      }
+
+      /* .UserLocation {
+        margin-left:80%;
+    }  */
 
     }
 
@@ -184,7 +196,7 @@
       left: 0;
       bottom: 0;
       width: 100%;
-      margin-left:0%;
+      /* margin-left:0%; */
       margin-bottom: 20%;
       opacity: 0.2;
     }
