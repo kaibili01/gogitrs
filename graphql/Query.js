@@ -34,6 +34,11 @@ const Query = new GraphQLObjectType({
       },
       reservations: {
         type: new GraphQLList(Reservation),
+        args: {
+          find: {
+            type: new GraphQLObjectType({ name: "objects", fields: { User, Post } })
+          }
+        },
         resolve(root, args) {
           return db.sequelize.models.Reservation.findAll({ where: args });
         }
