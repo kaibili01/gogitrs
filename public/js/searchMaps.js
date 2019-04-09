@@ -25,7 +25,9 @@ function initMap() {
     map: map,
     title: "Berkeley, CA"
   });
-  var contentString = '<div id="content">' + "Berkeley, CA" + "</div>";
+
+  var contentString = "<div id='content'>" + "Berkeley, CA" + "</div>";
+
   marker.addListener("click", function() {
     infowindow.open(map, marker);
     map.setZoom(14);
@@ -73,9 +75,11 @@ function initMap() {
   searchBox.addListener("places_changed", function() {
     var places = searchBox.getPlaces();
 
-    if (places.length == 0) {
+    if (places.length === 0) {
       return;
     }
+    console.log($("#pac-input").val());
+    $("#start").val($("#pac-input").val());
 
     // Clear out the old markers.
     markers.forEach(function(marker) {
@@ -131,11 +135,12 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       if (status === "OK") {
         directionsDisplay.setDirections(response);
       } else {
-        window.alert("Directions request failed due to " + status);
+        window.alert(
+          "Please enter or select valid addresses." +
+            "Directions request failed due to " +
+            status
+        );
       }
     }
   );
 }
-
-// script.src =
-//   "https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8&libraries=places&callback=initMap";
