@@ -24,7 +24,7 @@ $("#login-btn").on("click", () => {
   })
     .then(r => r.json())
     .then(data => {
-      console.log("data returned:", data.data.login.token);
+      console.log("data returned:", data);
       //initializes user token as cookie
       document.cookie = "jwt=" + data.data.login.token;
       window.location.href = "/feed";
