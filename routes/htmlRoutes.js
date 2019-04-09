@@ -36,8 +36,8 @@ module.exports = app => {
   app.get("/home", (req, res) => {
     res.render("navigation", {
       layout: "navigation-layout"
-    })
-  })
+    });
+  });
   app.get("/feed", (req, res) => {
     graphql(
       Schema,
@@ -83,37 +83,37 @@ module.exports = app => {
   app.get("*", (req, res) => {
     res.render("404");
   });
-};
 
-app.get("/maps", (req, res) => {
-  graphql(
-    Schema,
-    `
-      {
-        posts {
-          quantity
-          title
-          instructions
-          address
-          city
-          state
-          date
-          startTime
-          endTime
-          postedBy {
-            username
-            email
+  app.get("/maps", (req, res) => {
+    graphql(
+      Schema,
+      `
+        {
+          posts {
+            quantity
+            title
+            instructions
+            address
+            city
+            state
+            date
+            startTime
+            endTime
+            postedBy {
+              username
+              email
+            }
           }
         }
+      `,
+      (root, args) => {
+        return db.sequelize.models.Post.findAll({ where: args });
       }
-    `,
-    (root, args) => {
-      return db.sequelize.models.Post.findAll({ where: args });
-    }
-  ).then(response => {
-    res.render("searchMaps", {
-      layout: "searchMaps-layout",
-      posts: response.data.posts
+    ).then(response => {
+      res.render("searchMaps", {
+        layout: "searchMaps-layout",
+        posts: response.data.posts
+      });
     });
   });
-});
+};
