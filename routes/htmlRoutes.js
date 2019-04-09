@@ -28,6 +28,11 @@ module.exports = app => {
       layout: "search-layout"
     });
   });
+  app.get("/my-calendar", (req, res) => {
+    res.render("my-calendar", {
+      layout: "my-calendar-layout"
+    });
+  });
   app.get("/home", (req, res) => {
     res.render("navigation", {
       layout: "navigation-layout"
