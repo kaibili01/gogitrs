@@ -23,6 +23,11 @@ module.exports = app => {
       layout: "new-post-layout"
     });
   });
+  app.get("/search", (req, res) => {
+    res.render("search", {
+      layout: "search-layout"
+    });
+  });
   app.get("/home", (req, res) => {
     res.render("navigation", {
       layout: "navigation-layout"
