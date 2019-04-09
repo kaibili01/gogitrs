@@ -1,34 +1,51 @@
-<div id="home">
-  <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>Home Page</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
-              placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Scheduled Events:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each events}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+<div class="container container1">
+  <div class="row">
+    <div class="col">
+      <a href="/home">
+        <h1 class="headerText text-center">
+          farmShare
+        </h1>
+      </a>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <h5 class="subHeader text-center">
+        Upcoming Harvests!
+      </h5>
+    </div>
+  </div>
+      {{#each posts}}
+    <br>
+    <div class="row justify-content-center">
+        <div class="card" style="max-width: 12rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{this.quantity}} {{this.title}}</h5>
+                <p>{{this.city}}, {{this.state}}</p>
+                <p class="card-text text-center">{{this.date}}, {{this.startTime}}—{{this.endTime}}</p>
+                <p>Instructions: {{this.instructions}}</p>
+                <p>Posted by <b>{{this.postedBy.username}}</b></p>
+                <div class="row">
+                    <div class="col">
+                        <a href="mailto:{{this.postedBy.email}}" class="btn btn-link">Contact</a>
+                    </div>
+                    <div class="col">
+                        <a href="#" data-post="{{this.id}}" class="btn btn-link calendar-btn">Add to Calendar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+
+    <div class="row align-items-end justify-content-end">
+      <div class="col-4">
+        <a href="/home">
+          <button type="button" class="btn btn-danger">Back to Nav</button>
+        </a>
+      </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

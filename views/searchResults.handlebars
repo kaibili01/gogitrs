@@ -1,9 +1,11 @@
 <div class="container">
     <div class="row sticky-top topRow">
         <div class="col">
-            <h1 class="headerText text-center">
-                farmShare
-            </h1>
+            <a href="/home">
+                <h1 class="headerText text-center">
+                    farmShare
+                </h1>
+            </a>
         </div>
     </div>
     <div class="row">
@@ -14,16 +16,26 @@
         </div>
     </div>
     {{#each posts}}
+    <br>
     <div class="row justify-content-center">
-        <div class="card" style="max-width: 12rem;">
+        <div class="card col-10" style="">
             <div class="card-body">
                 <h5 class="card-title text-center">{{this.quantity}} {{this.title}}</h5>
-                <p>{{this.city}}, {{this.state}}</p>
+                <p class="card-text text-center">{{this.city}}, {{this.state}}</p>
                 <p class="card-text text-center">{{this.date}}, {{this.startTime}}—{{this.endTime}}</p>
-                <p>Instructions: {{this.instructions}}</p>
+                <p class="card-text text-center">Instructions: {{this.instructions}}</p>
+                <p class="card-text text-center">Posted by <b>{{this.postedBy.username}}</b></p>
                 <div class="row">
-                    <div class="col">
-                        <a href="mailto:{{this.user.email}}" class="btn btn-link">Contact</a>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-outline-success">
+                            <a style="color: inherit; text-decoration:none"
+                                href="mailto:{{this.postedBy.email}}">Contact</a>
+                        </button>
+                    </div>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-outline-secondary">
+                            <a data-post="{{this.id}}" class="calendar-btn">Add to Calendar</a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -31,6 +43,14 @@
     </div>
     {{/each}}
 
+    <br>
+
+    <div class="row justify-content-center">
+        <div class="col-4 text-center">
+            <button type="button" class="btn btn-danger">Back to Nav</button>
+        </div>
+    </div>
+    <br><br>
     <footer>
         <div class="row footer">
             <div class="col-12">
@@ -47,4 +67,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-<script src="/js/welcomePage.js" async defer></script>
+<script src="/js/calendar.js" async defer></script>

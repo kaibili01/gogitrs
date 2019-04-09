@@ -12,16 +12,12 @@
     </head>
     <body>
         <div class="container">
-            <!-- <div class="row no-gutter"> -->
-           <!-- <div class="mw-100 row p-3 mb-2 bg-warning text-dark">  -->
+            <div class="row">
                 <div class="col">
-                  <h1 class="headerText text-center">
-                      <!-- <span class="border border border-dark"> -->
-                        farmShare!
-                      <!-- </span> -->
-                       
+                    <h1 class="headerText text-center">
+                        Farm Share!
                     </h1>
-                <!-- </div> -->
+                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -44,7 +40,7 @@
                         <div class="form-group col-md-">
                           </div>
                 
-                          <!-- <div class="row UserLocation">
+                          <div class="row UserLocation">
                                 <div class="col-10 offset-1">
                                     <div class="row">
                                         <div class="col">
@@ -53,7 +49,8 @@
                                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin"></i></span>
                                                     </div>
                                                 <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
-                                            </div> -->
+                                                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                                            </div>
 
                                         
                                         </div>

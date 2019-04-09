@@ -45,7 +45,11 @@ db.Sequelize = Sequelize;
 
 //Relationships
 db.User.hasMany(db.Post);
+db.User.hasMany(db.Reservation);
+db.Post.hasMany(db.Reservation);
 db.Post.belongsTo(db.User);
+db.Reservation.belongsTo(db.User);
+db.Reservation.belongsTo(db.Post);
 
 const syncOptions = { force: false };
 
@@ -64,7 +68,6 @@ db.sequelize.sync(syncOptions).then(() => {
   //     username: faker.internet.userName(),
   //     password: faker.internet.password(),
   //     email: faker.internet.email(),
-  //     calendar: "{}",
   //     permissions: JSON.stringify({
   //       post: faker.random.boolean(),
   //       harvest: faker.random.boolean(),
