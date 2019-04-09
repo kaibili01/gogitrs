@@ -246,10 +246,11 @@
     font-family: Roboto;
     font-size: 15px;
     font-weight: 300;
-    margin-left: 12px;
+    margin-top: 12px;
+    margin-left: 100px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
-    width: 400px;
+    width: 320px;
   }
 
   #pac-input:focus {
@@ -265,4 +266,16 @@
   }
   #target {
     width: 345px;
+  }
+
+  #floating-panel{
+    margin-top: 4%;  
+  }
+
+  #start{
+    width: 280px;
+  }
+
+  #end{
+    margin-top: 4px;
   }
