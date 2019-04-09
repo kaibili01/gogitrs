@@ -1,6 +1,7 @@
 const Schema = require("../graphql/Schema");
 const db = require("../models/db");
 const { graphql } = require("graphql");
+require("dotenv").config();
 module.exports = app => {
   // Load index page
   app.get("/", (req, res) => {
@@ -99,7 +100,8 @@ module.exports = app => {
     ).then(response => {
       res.render("searchMaps", {
         layout: "searchMaps-layout",
-        posts: response.data.posts
+        posts: response.data.posts,
+        googleKey: process.env.GOOGLE_API_KEY
       });
     });
   });
