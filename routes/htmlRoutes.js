@@ -84,3 +84,36 @@ module.exports = app => {
     res.render("404");
   });
 };
+
+app.get("/maps", (req, res) => {
+  graphql(
+    Schema,
+    `
+      {
+        posts {
+          quantity
+          title
+          instructions
+          address
+          city
+          state
+          date
+          startTime
+          endTime
+          postedBy {
+            username
+            email
+          }
+        }
+      }
+    `,
+    (root, args) => {
+      return db.sequelize.models.Post.findAll({ where: args });
+    }
+  ).then(response => {
+    res.render("searchMaps", {
+      layout: "searchMaps-layout",
+      posts: response.data.posts
+    });
+  });
+});
