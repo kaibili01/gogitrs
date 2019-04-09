@@ -23,12 +23,28 @@ module.exports = app => {
       layout: "new-post-layout"
     });
   });
+  app.get("/search", (req, res) => {
+    res.render("search", {
+      layout: "search-layout"
+    });
+  });
+  app.get("/my-calendar", (req, res) => {
+    res.render("my-calendar", {
+      layout: "my-calendar-layout"
+    });
+  });
+  app.get("/home", (req, res) => {
+    res.render("navigation", {
+      layout: "navigation-layout"
+    })
+  })
   app.get("/feed", (req, res) => {
     graphql(
       Schema,
       `
         {
           posts {
+            id
             quantity
             title
             instructions
@@ -49,7 +65,7 @@ module.exports = app => {
       }
     ).then(response => {
       res.render("searchResults", {
-        layout: "login-layout",
+        layout: "searchResults-layout",
         posts: response.data.posts
       });
     });

@@ -1,19 +1,41 @@
-// const cookie = document.cookie;
-
-// var query = `query RollDice($dice: Int!, $sides: Int) {
-//   rollDice(numDice: $dice, numSides: $sides)
-// }`;
-
-// fetch('/graphql', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//     'Accept': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     query,
-//     variables: { dice, sides },
-//   })
-// })
-//   .then(r => r.json())
-//   .then(data => console.log('data returned:', data));
+$(document).ready(() => {
+  const getCookie = name => {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) {
+      return parts
+        .pop()
+        .split(";")
+        .shift();
+    }
+  };
+  if (!getCookie("jwt")) {
+    window.location.href = "/login";
+  }
+  $(document).on("click", ".calendar-btn", event => {
+    event.preventDefault();
+    const postId = parseInt(event.target.attributes["data-post"].nodeValue);
+    const jwt = getCookie("jwt");
+    const query = `
+    mutation addReservation($jwt: String!, $postId: Int!) {
+      addReservation(jwt: $jwt, postId:$postId){
+        id
+      }
+    }
+    `;
+    console.log(query);
+    console.log("postId:", postId);
+    console.log("jwt:", jwt);
+    fetch("/graphql", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        query,
+        variables: { jwt, postId }
+      })
+    });
+  });
+});

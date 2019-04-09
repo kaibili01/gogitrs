@@ -5,7 +5,7 @@ const {
   GraphQLList
 } = require("graphql");
 const db = require("../models/db");
-const { User, Post } = require("./TypeDefs");
+const { User, Post, Reservation } = require("./TypeDefs");
 
 const Query = new GraphQLObjectType({
   name: "Query",
@@ -30,6 +30,17 @@ const Query = new GraphQLObjectType({
         type: new GraphQLList(Post),
         resolve(root, args) {
           return db.sequelize.models.Post.findAll({ where: args });
+        }
+      },
+      reservations: {
+        type: new GraphQLList(Reservation),
+        args: {
+          find: {
+            type: new GraphQLObjectType({ name: "objects", fields: { User, Post } })
+          }
+        },
+        resolve(root, args) {
+          return db.sequelize.models.Reservation.findAll({ where: args });
         }
       }
     };

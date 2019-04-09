@@ -1,5 +1,3 @@
-console.log("This is the register page!");
-
 $("#login-btn").on("click", () => {
   const userEntry = $("#user-entry")
     .val()
@@ -29,5 +27,6 @@ $("#login-btn").on("click", () => {
       console.log("data returned:", data);
       //initializes user token as cookie
       document.cookie = "jwt=" + data.data.login.token;
+      window.location.href = "/feed";
     });
 });
