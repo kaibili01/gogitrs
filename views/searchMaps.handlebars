@@ -1,166 +1,21 @@
-<<<<<<< HEAD
-<divcontainer">
-    <divrow">
-     class="col">
-    <h1 class="headerText text-center">
-             Share!
-        >
-    v>
-       <divrow">
-        <divcol">
-            <h3 ubHeader text-center">
-            s giving fruit away?
-        >
-    v>
-   </div>                 
-        <br>
-        <br>    
- dir    <div le.maps.
-ing-panel">
-        <strong>Start:</strong>
-        ">Copyright 2019 </p> </a>
-        </div>
-    </div>
-</div>
-p() {
-      ptlass="input-group-text" id="basic-addon1"><i class="fas fa-map-pin"></i></span> --}}
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-     new id="map"></div>
-<div goo id="showTrees">           var coords = res    r glr coords = results.features[i].geometry.coordinates;
-      e.var latLng = new google.maps.LatxLng(coords[1],ecoords[0]);
-          var marker "= new google.mt      var marker = new google.m  mavar marke       
-    ivps id="right-panel"></div>
-       <di      
-ap;
-    ar dir     
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-        var     v          function initMap() {
-          
-        var directionsDisplay = new go     eectR       <div  lass="    document.getElementById('start  documetrt').addEav        ener('change', onChangeHandler);
-             // s  local copy of t details       sear at pl/ This exae a <sd_bcallresultk script> tag and st the USGS URLas the source.
-{)= uctionac       v// Cr
- t');
-        if         sear(plas.le        s    retuddListener('places_changed', function() {
-  ce    n;
-     t'        $('#sta)r}
-   s    return;
-          }
-   .val($('#  }
-          $('#start').val($('#  
-        (' }#start')v.a
-          if (places == 0) {
-         entLisument.createElement('script');
-ectionsDisplay = new google.maps.DirectionsRenderer;
-        var directionsService =       var map;
-        
-        var onChangeHandler = function() {
-          calculateAndDisplayRoute(directionsService, directionsDisplay);
-        };
-        document.getElementById('start').addEventListener('change', onChangeHandler);
-        do    <script>
-        
-            
-         
-        
-            
-            // This example uses a local copy of the GeoJ     map: ma// Biatrols[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // p
-          });
-        }
-  ('bounds_changed', function() {
-          nt.
-      var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        //($('#pac-input').val()); 
-
-          // Clear out the old markers.
-          markers.forEach Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-          $('#s2          center: new             var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.f;
-      fbounds);
-        });
-    }
-    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var start = document.getElementById('start').value;
-        var end = document.getElementById('end').value;
-        directionsService.route({
-          origin: start,
-          destination: end,
-          travelMode: 'DRIVING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            directionsDisplay.setDirections(response);
-          } else {
-            window.alert('Directions request failed due to ' + status);
-          }ctionsService;
-        map = new google.maps.Map(document.getElem
-        });
-      }
-
-     
-    </script>
-    {{!-- <script src="/gogitrs/public/js/searchMaps.js" async defer></script> --}}
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8&libraries=places&callback=initMap"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-=======
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h1 class="headerText text-center">
-                Farm Share!
-            </h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h3 class="subHeader text-center">
-                Who's giving fruit away?
-            </h3>
-        </div>
-    </div>                 
-    <br>
-    <br>    
-    <div id="floating-panel">
+            <div class="row">
+                <div class="col">
+                    <h1 class="headerText text-center">
+                        Farm Share!
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h3 class="subHeader text-center">
+                        Who's giving fruit away?
+                    </h3>
+                </div>
+            </div>                   
+            <br>
+            <br>    
+            <div id="floating-panel">
         <strong>Start:</strong>
         <input id="start" class="controls" type="text" placeholder="Your Address">
         <br>
@@ -170,32 +25,21 @@ ectionsDisplay = new google.maps.DirectionsRenderer;
         <option value="{{this.address}}, {{this.city}}, {{this.state}}">{{this.address}}, {{this.city}}, {{this.state}}</option>
         {{/each}}
         </select>
-    </div>
+      </div>
 
-    {{!-- <span class="input-group-text" id="basic-addon1"><i class="fas fa-map-pin"></i></span> --}}
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
-    <div id="showTrees">        
-        <button id="showTreesMap" onclick="treeFunc()" type="submit" value={{#each posts}}"{{this.address}} {{this.city}} {{this.state}} " {{/each}}>{{this.value}}</button> 
-        <script>
-        function treeFunc() {
-        var r = $("#showTreesMap").value;
-        return r;
-        $("#showTrees").append(r);
-        }
-</script></div>
-
-    <div id="right-panel"></div>
-    
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box">      
+        <div id="map"></div>
+        <div id="right-panel"></div>
+        
     <div class="row footer">
         <div class="col-12">
-            <    // This example uses a local copy of the GeoJSON stored at
-    class== new google.        positio: latLng,
-       position: latLng,
-     a><p         position: latLng,
-         // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-        script.src = 'https://developers.google.com/maps/docum    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
-     Loop through the results array and place a marker for each
-     set of coordinates.
-    ndow.eqfeed_callback = function(results) {
-    
+            <a><p class="text-center">Copyright 2019 </p> </a>
+        </div>
+    </div>
+</div> 
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuLL-cdGct-TE_klN5c6DrkaaDete7jq8&libraries=places&callback=initMap"></script>      
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="/js/searchMaps.js" async defer></script>
