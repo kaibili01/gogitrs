@@ -75,12 +75,12 @@ let dDownBtn = "State";
 
 $("#dDownBtn").text(dDownBtn);
 
-$(".dropdown-item").on("click", function() {
+$(".dropdown-item").on("click", function () {
   dDownBtn = $(this).text();
   $("#dDownBtn").text(dDownBtn);
 });
 
-$("#submit-btn").on("click", function() {
+$("#submit-btn").on("click", function () {
   const title = $("#title")
     .val()
     .trim();
@@ -114,18 +114,8 @@ $("#submit-btn").on("click", function() {
       addPost(title: $title,quantity:$quantity,instructions:$instructions,address:$address,city:$city,state:$state,date:$date,startTime:$startTime,endTime:$endTime,userId:$userId) {
         id
       }
-    }`;
-  console.log(query);
-  console.log("title", title);
-  console.log("quantity", quantity);
-  console.log("instructions", instructions);
-  console.log("address", address);
-  console.log("city", city);
-  console.log("state", state);
-  console.log("date", date);
-  console.log("startTime", startTime);
-  console.log("endTime", endTime);
-  console.log("userId", userId);
+    }
+    `;
   fetch("/graphql", {
     method: "POST",
     headers: {
