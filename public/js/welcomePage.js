@@ -10,6 +10,6 @@ const getCookie = name => {
 };
 $(document).ready(() => {
   if (getCookie("jwt")) {
-    window.location.href = "/feed";
+    window.location.href = "/home";
   }
 });

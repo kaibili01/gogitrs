@@ -155,10 +155,10 @@ const Reservation = new GraphQLObjectType({
           return reservation.id;
         }
       },
-      user: {
-        type: User,
+      userId: {
+        type: GraphQLString,
         resolve(reservation) {
-          return reservation.getUser();
+          return reservation.userId;
         }
       },
       post: {

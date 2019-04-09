@@ -153,9 +153,9 @@ const Mutation = new GraphQLObjectType({
           }
         },
         async resolve(parent, args) {
-          const decrypted = jwt.verify(args.jwt, process.env.APP_SECRET);
+          const decrypted = await jwt.verify(args.jwt, process.env.APP_SECRET);
           return db.sequelize.models.Reservation.create({
-            UserId: decrypted.userId,
+            userId: parseInt(decrypted.userId),
             PostId: args.postId
           });
         }

@@ -1,3 +1,4 @@
+console.log("calendar.js");
 $(document).ready(() => {
   const getCookie = name => {
     const value = "; " + document.cookie;
@@ -9,33 +10,68 @@ $(document).ready(() => {
         .shift();
     }
   };
-  if (!getCookie("jwt")) {
+  const userId = getCookie("jwt");
+  if (!userId) {
     window.location.href = "/login";
   }
-  $(document).on("click", ".calendar-btn", event => {
-    event.preventDefault();
-    const postId = parseInt(event.target.attributes["data-post"].nodeValue);
-    const jwt = getCookie("jwt");
-    const query = `
-    mutation addReservation($jwt: String!, $postId: Int!) {
-      addReservation(jwt: $jwt, postId:$postId){
-        id
+  const query = `
+    query reservations($userId: String!) {
+      reservations(userId: $userId) {
+        post{
+          id
+        }
       }
     }
     `;
-    console.log(query);
-    console.log("postId:", postId);
-    console.log("jwt:", jwt);
-    fetch("/graphql", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({
-        query,
-        variables: { jwt, postId }
+  console.log(userId);
+  console.log(query);
+  fetch("/graphql", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify({
+      query,
+      variables: {
+        userId
+      }
+    })
+  })
+    .then(r => r.json())
+    .then(data => {
+      const id = data.data.reservations.map(x => x.post.id);
+      console.log(id);
+      const newQuery = `
+        query posts($id: [Int]) {
+          posts(id:$id) {
+            id
+            title
+            instructions
+            postedBy {
+              username
+              email
+            }
+          }
+        }
+      `;
+      console.log("new query:  ", newQuery);
+      fetch("/graphql", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          newQuery,
+          variables: {
+            id
+          }
+        })
       })
+        .then(r => r.json())
+        .then(data => {
+          console.table(data);
+        });
     });
-  });
 });

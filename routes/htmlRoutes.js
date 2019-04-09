@@ -28,7 +28,7 @@ module.exports = app => {
       layout: "search-layout"
     });
   });
-  app.get("/my-calendar", (req, res) => {
+  app.get("/calendar", (req, res) => {
     res.render("my-calendar", {
       layout: "my-calendar-layout"
     });
