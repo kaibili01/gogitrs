@@ -6,6 +6,8 @@ const {
 } = require("graphql");
 const db = require("../models/db");
 const { User, Post, Reservation } = require("./TypeDefs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const Query = new GraphQLObjectType({
   name: "Query",
@@ -28,6 +30,11 @@ const Query = new GraphQLObjectType({
       },
       posts: {
         type: new GraphQLList(Post),
+        args: {
+          id: {
+            type: new GraphQLList(GraphQLInt)
+          }
+        },
         resolve(root, args) {
           return db.sequelize.models.Post.findAll({ where: args });
         }
@@ -35,12 +42,16 @@ const Query = new GraphQLObjectType({
       reservations: {
         type: new GraphQLList(Reservation),
         args: {
-          find: {
-            type: new GraphQLObjectType({ name: "objects", fields: { User, Post } })
+          userId: {
+            type: GraphQLString
           }
         },
-        resolve(root, args) {
-          return db.sequelize.models.Reservation.findAll({ where: args });
+        async resolve(root, args) {
+          const decrypted = jwt.verify(args.userId, process.env.APP_SECRET);
+          const reservations = await db.sequelize.models.Reservation.findAll({
+            where: { userId: decrypted.userId }
+          });
+          return reservations;
         }
       }
     };

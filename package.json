@@ -9,6 +9,9 @@
     "fix": "eslint --fix .",
     "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
   },
+  "engines": {
+    "node": "11.6.0"
+  },
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",

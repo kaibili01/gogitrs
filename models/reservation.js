@@ -1,5 +1,10 @@
-module.exports = sequelize => {
-  const Reservation = sequelize.define("Reservation", {});
+module.exports = (sequelize, DataTypes) => {
+  const Reservation = sequelize.define("Reservation", {
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
+  });
 
   return Reservation;
 };

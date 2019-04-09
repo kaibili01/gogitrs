@@ -28,7 +28,7 @@ module.exports = app => {
       layout: "search-layout"
     });
   });
-  app.get("/my-calendar", (req, res) => {
+  app.get("/calendar", (req, res) => {
     res.render("my-calendar", {
       layout: "my-calendar-layout"
     });
@@ -103,50 +103,9 @@ module.exports = app => {
       });
     });
   });
-  // Load example page and pass in an example by id
-  app.get("/example/:id", (req, res) => {
-    db.Example.findOne({ where: { id: req.params.id } }).then(dbExample => {
-      res.render("example", {
-        example: dbExample
-      });
-    });
-  });
 
   // Render 404 page for any unmatched routes
   app.get("*", (req, res) => {
     res.render("404");
-  });
-
-  app.get("/maps", (req, res) => {
-    graphql(
-      Schema,
-      `
-        {
-          posts {
-            quantity
-            title
-            instructions
-            address
-            city
-            state
-            date
-            startTime
-            endTime
-            postedBy {
-              username
-              email
-            }
-          }
-        }
-      `,
-      (root, args) => {
-        return db.sequelize.models.Post.findAll({ where: args });
-      }
-    ).then(response => {
-      res.render("searchMaps", {
-        layout: "searchMaps-layout",
-        posts: response.data.posts
-      });
-    });
   });
 };

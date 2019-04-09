@@ -9,21 +9,16 @@ $(document).ready(() => {
         .shift();
     }
   };
-  const jwt = getCookie("jwt");
-  if (!jwt) {
+  if (!getCookie("jwt")) {
     window.location.href = "/login";
   }
-  $(document).on("click", "#logout-btn", event => {
+  $(document).on("click", ".calendar-btn", event => {
     event.preventDefault();
-    document.cookie = "jwt=;";
-    window.location.href = "/login";
-  });
-  $(document).on("click", "#delete-acc", event => {
-    event.preventDefault();
+    const postId = parseInt(event.target.attributes["data-post"].nodeValue);
     const jwt = getCookie("jwt");
     const query = `
-    mutation removeUser($jwt: String!) {
-      removeUser(jwt: $jwt){
+    mutation addReservation($jwt: String!, $postId: Int!) {
+      addReservation(jwt: $jwt, postId:$postId){
         id
       }
     }
@@ -36,11 +31,8 @@ $(document).ready(() => {
       },
       body: JSON.stringify({
         query,
-        variables: { jwt }
+        variables: { jwt, postId }
       })
-    }).then(() => {
-      document.cookie = "jwt=;";
-      window.location.href = "/login";
     });
   });
 });
