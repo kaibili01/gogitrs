@@ -56,6 +56,9 @@ regBtn.on("click", event => {
       })
     })
       .then(r => r.json())
-      .then(data => console.log("data returned:", data));
+      .then(data => {
+        console.log("data returned:", data);
+        window.location.href = "/login";
+      });
   }
 });
