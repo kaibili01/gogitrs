@@ -159,6 +159,42 @@ const Mutation = new GraphQLObjectType({
             PostId: args.postId
           });
         }
+      },
+      removeReservation: {
+        type: Reservation,
+        args: {
+          jwt: {
+            type: new GraphQLNonNull(GraphQLString)
+          },
+          postId: {
+            type: new GraphQLNonNull(GraphQLInt)
+          }
+        },
+        async resolve(parent, args) {
+          const decrypted = await jwt.verify(args.jwt, process.env.APP_SECRET);
+          return db.sequelize.models.Reservation.destroy({
+            where: {
+              userId: parseInt(decrypted.userId),
+              PostId: args.postId
+            }
+          });
+        }
+      },
+      removeUser: {
+        type: User,
+        args: {
+          jwt: {
+            type: new GraphQLNonNull(GraphQLString)
+          }
+        },
+        async resolve(parent, args) {
+          const decrypted = await jwt.verify(args.jwt, process.env.APP_SECRET);
+          return db.sequelize.models.User.destroy({
+            where: {
+              id: parseInt(decrypted.userId)
+            }
+          });
+        }
       }
     };
   }

@@ -23,9 +23,6 @@ $(document).ready(() => {
       }
     }
     `;
-    console.log(query);
-    console.log("postId:", postId);
-    console.log("jwt:", jwt);
     fetch("/graphql", {
       method: "POST",
       headers: {
