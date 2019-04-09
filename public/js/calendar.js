@@ -82,28 +82,40 @@ $(document).ready(() => {
       $("#posts").append(`
         <br>
         <div class="row justify-content-center">
-            <div class="card col-10" style="">
-                <div class="card-body">
-                    <h5 class="card-title text-center">${postArr[i].quantity} ${postArr[i].title}</h5>
-                    <p class="card-text text-center">${postArr[i].city}, ${postArr[i].state}</p>
-                    <p class="card-text text-center">${postArr[i].date}, ${postArr[i].startTime}—${postArr[i].endTime}</p>
-                    <p class="card-text text-center">Instructions: ${postArr[i].instructions}</p>
-                    <p class="card-text text-center">posted by <b>${postArr[i].postedBy.username}</b></p>
-                    <div class="row">
-                        <div class="col text-center">
-                            <button type="button" class="btn btn-outline-success">
-                                <a style="color: inherit; text-decoration:none"
-                                    href="mailto:${postArr[i].postedBy.email}">Contact</a>
-                            </button>
-                        </div>
-                        <div class="col text-center">
-                            <button type="button" class="btn btn-outline-secondary">
-                                <a data-post="${postArr[i].id}" class="delete-btn">Remove from calendar</a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+          <div class="card col-10" style="">
+            <div class="card-body">
+              <h5 class="card-title text-center">
+                ${postArr[i].quantity} ${postArr[i].title}
+              </h5>
+              <p class="card-text text-center">
+                ${postArr[i].city}, ${postArr[i].state}
+              </p>
+              <p class="card-text text-center">
+                ${postArr[i].date}, ${postArr[i].startTime}—${postArr[i].endTime}
+              </p>
+              <p class="card-text text-center">
+                Instructions: ${postArr[i].instructions}
+              </p>
+              <p class="card-text text-center">
+                posted by <b>${postArr[i].postedBy.username}</b>
+              </p>
+              <div class="row">
+                  <div class="col text-center">
+                    <button type="button" class="btn btn-outline-success">
+                      <a style="color: inherit; text-decoration:none"
+                          href="mailto:${postArr[i].postedBy.email}">Contact</a>
+                    </button>
+                  </div>
+                  <div class="col text-center">
+                    <button type="button" class="btn btn-outline-secondary">
+                      <a data-post="${postArr[i].id}" class="delete-btn">
+                        Remove from calendar
+                      </a>
+                    </button>
+                  </div>
+              </div>
             </div>
+          </div>
         </div>
       `);
     }
