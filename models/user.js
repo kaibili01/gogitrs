@@ -1,87 +1,69 @@
-const bcrypt = require("bcrypt-nodejs");
+import bcrypt from "bcryptjs";
 
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const User = sequelize.define(
     "User",
     {
       firstName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isUnique: (value, next) => {
-            User.find({
-              where: { username: value },
-              attributes: ["id"]
-            }).done((error, user) => {
-              if (error) {
-                return next(error);
-              }
-              if (user) {
-                // We found a user with this email address.
-                // Pass the error to the next method.
-                return next("Email address already in use!");
-              }
-              // If we got this far, the email address hasn't been used yet.
-              // Call next with no arguments when validation is successful.
-              next();
-            });
-          }
-        }
+        unique: true,
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           isEmail: true,
-          isUnique: (value, next) => {
-            User.find({
-              where: { email: value },
-              attributes: ["id"]
-            }).done((error, user) => {
-              if (error) {
-                // Some unexpected error occured with the find method.
-                return next(error);
-              }
-              if (user) {
-                // We found a user with this email address.
-                // Pass the error to the next method.
-                return next("Email address already in use!");
-              }
-              // If we got this far, the email address hasn't been used yet.
-              // Call next with no arguments when validation is successful.
-              next();
-            });
-          }
-        }
+        },
       },
       permissions: {
         type: DataTypes.TEXT,
-        allowNull: true
-      }
+        allowNull: true,
+      },
     },
     {
-      instanceMethods: {
-        generateHash(password) {
-          return bcrypt.hash(password, bcrypt.genSaltSync(8));
+      hooks: {
+        beforeCreate: async (user) => {
+          if (user.password) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
+          }
         },
-        validPassword(password) {
-          return bcrypt.compare(password, this.password);
-        }
-      }
+        beforeUpdate: async (user) => {
+          if (user.changed("password")) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(user.password, salt);
+          }
+        },
+      },
     }
   );
+
+  // Instance method to validate password
+  User.prototype.validPassword = function (password) {
+    return bcrypt.compare(password, this.password);
+  };
+
+  // Model association
+  User.associate = (models) => {
+    User.hasMany(models.Post, {
+      onDelete: "CASCADE",
+      hooks: true,
+    });
+  };
 
   return User;
 };

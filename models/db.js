@@ -1,90 +1,60 @@
-"use strict";
+import "dotenv/config.js";
+import fs from "fs";
+import path from "path";
+import Sequelize from "sequelize";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-require("dotenv").config();
-const fs = require("fs");
-const path = require("path");
-const Sequelize = require("sequelize");
-const basename = path.basename(module.filename);
+// Helpers for __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/config.json")[env];
+
+// Load config.json based on current environment
+const configPath = path.resolve(__dirname, "../config/config.json");
+const config = JSON.parse(fs.readFileSync(configPath))[env];
+
+// Initialize db and Sequelize
 const db = {};
-const _ = require("lodash"); //used for repeatedly adding data
-const faker = require("faker"); //used for generating mock data
 
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable]);
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-fs.readdirSync(__dirname)
-  .filter(file => {
-    return (
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    );
-  })
-  .forEach(file => {
-    let model = sequelize.import(path.join(__dirname, file));
-    db[model.name] = model;
-  });
+// Dynamically import all models from this directory
+const modelFiles = fs.readdirSync(__dirname).filter(
+  (file) =>
+    file.indexOf(".") !== 0 &&
+    file !== basename &&
+    file.endsWith(".js")
+);
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
+for (const file of modelFiles) {
+  const { default: modelDefiner } = await import(path.join(__dirname, file));
+  const model = modelDefiner(sequelize, Sequelize.DataTypes);
+  db[model.name] = model;
+}
+
+// Apply model associations
+for (const modelName of Object.keys(db)) {
+  if (typeof db[modelName].associate === "function") {
     db[modelName].associate(db);
   }
-});
+}
 
+// Add Sequelize references to db object
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-//Relationships
-db.User.hasMany(db.Post);
-db.Post.hasMany(db.Reservation);
-db.Post.belongsTo(db.User);
-db.Reservation.belongsTo(db.Post);
+// Sync options
+const syncOptions = { force: process.env.NODE_ENV === "test" };
 
-const syncOptions = { force: false };
+// Sync DB
+await sequelize.sync(syncOptions);
 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-if (process.env.NODE_ENV === "test") {
-  syncOptions.force = true;
-}
-
-// Starting the server, syncing our models ------------------------------------/
-db.sequelize.sync(syncOptions).then(() => {
-  // _.times(10, () => {
-  //   return db.User.create({
-  //     firstName: faker.name.firstName(),
-  //     lastName: faker.name.lastName(),
-  //     username: faker.internet.userName(),
-  //     password: faker.internet.password(),
-  //     email: faker.internet.email(),
-  //     permissions: JSON.stringify({
-  //       post: faker.random.boolean(),
-  //       harvest: faker.random.boolean(),
-  //       admin: false
-  //     })
-  //   }).then(user => {
-  //     return user.createPost({
-  //       title: `Sample title by ${user.firstName} ${user.lastName}`,
-  //       quantity: faker.random.number(),
-  //       instructions: "This is a sample post",
-  //       address: faker.address.streetAddress(),
-  //       city: faker.address.city(),
-  //       state: faker.address.stateAbbr(),
-  //       date: "April 16th 2019",
-  //       startTime: "10:00 AM",
-  //       endTime: "04:00 PM"
-  //     });
-  //   });
-  // });
-});
-
-module.exports = db;
+export default db;

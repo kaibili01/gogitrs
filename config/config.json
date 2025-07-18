@@ -2,15 +2,15 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "FarmShare_db",
-    "host": "localhost",
+    "database": "farmshare_db",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "testdb",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "mysql",
     "logging": false
   },
