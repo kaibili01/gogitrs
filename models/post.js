@@ -1,42 +1,57 @@
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const Post = sequelize.define("Post", {
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     instructions: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     date: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     startTime: {
-      type: DataTypes.TEXT,
-      allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     endTime: {
-      type: DataTypes.TEXT,
-      alloqNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   });
+
+  Post.associate = (models) => {
+    // Each Post belongs to one User
+    Post.belongsTo(models.User, {
+      foreignKey: { allowNull: false },
+      onDelete: "CASCADE",
+    });
+
+    // A Post can have many Reservations; delete Reservations if Post is deleted
+    Post.hasMany(models.Reservation, {
+      foreignKey: "postId",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
+  };
 
   return Post;
 };
